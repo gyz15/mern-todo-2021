@@ -1,0 +1,38 @@
+// Import Modules
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+// const cors = require("cors");
+
+// Import Routes
+const users = require("./routes/api/users");
+const todos = require("./routes/api/todos");
+
+const app = express();
+
+// Express App Config
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Cors Setup
+
+// Connect to mongodb
+const db = require("./config/db").mongoURI;
+
+mongoose
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(err));
+
+// Passport
+
+// Routes
+app.use("/api/user", users);
+app.use("/api/todo", todos);
+
+// Port
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
