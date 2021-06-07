@@ -21,11 +21,17 @@ app.use(bodyParser.json());
 const db = require("./config/db").mongoURI;
 
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
 // Passport
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 // Routes
 app.use("/api/user", users);
