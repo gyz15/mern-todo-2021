@@ -93,19 +93,5 @@ router.post("/login", (req, res) => {
     });
   });
 });
-// TODO
-// @route   GET api/user/todo/all
-// @desc    Get all user todo's
-// @access  Private
-router.get(
-  "/todo/all",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json({
-      id: req.user.id,
-      username: req.user.username,
-    });
-  }
-);
 
 module.exports = router;

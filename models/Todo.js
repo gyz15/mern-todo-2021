@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 // User Schema
 const TodoSchema = new Schema({
-  created_at: {
-    type: Date,
-    default: Date.now,
+  description: {
+    type: String,
+    required: true,
   },
   have_due: {
     type: Boolean,
@@ -14,17 +14,21 @@ const TodoSchema = new Schema({
   due_date: {
     type: Date,
   },
-  done: {
-    type: Boolean,
-    default: false,
-  },
-  is_daily_routine: {
+  is_daily: {
     type: Boolean,
     default: false,
   },
   owner: {
     type: Schema.Types.ObjectId,
     ref: "user",
+  },
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
+  done: {
+    type: Boolean,
+    default: false,
   },
 });
 

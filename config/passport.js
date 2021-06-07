@@ -11,11 +11,12 @@ opts.secretOrKey = process.env.SECRET_OR_KEY;
 module.exports = (passport) => {
   passport.use(
     new JwtStrategy(opts, (jwt_payload, done) => {
-      console.log("Passport JWT Strategy called");
-      console.log(jwt_payload);
-      User.findOne({ username: jwt_payload.username })
+      // Return user object without password
+      User.findOne({ username: jwt_payload.username }, "-password")
         .then((user) => {
           if (user) {
+            console.log(user);
+            user.password;
             return done(null, user);
           }
           return done(null, false);
