@@ -15,13 +15,13 @@ router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    User.findOne({ _id: req.user.id })
-      .populate("todo_list", ["description", "created_at"])
+    User.findOne({ _id: req.user.id }, "-password")
+      .populate("todoList")
       .then((user) => {
         if (!user) {
           res.status(404).json({ usernotfound: "User not found" });
         } else {
-          res.json(req.user);
+          res.json(user);
         }
       });
   }
@@ -49,7 +49,8 @@ router.post(
     newTodo
       .save()
       .then((todoObj) => {
-        res.json(todoObj);
+        req.user.todoList.push(newTodo);
+        req.user.save().then(() => res.json(newTodo));
       })
       .catch((err) => console.log(err));
   }

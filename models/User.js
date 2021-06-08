@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  todo_list: [
+  todoList: [
     {
       type: Schema.Types.ObjectId,
       ref: "Todo",
