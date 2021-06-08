@@ -15,7 +15,7 @@ const UserSchema = new Schema({
   todo_list: [
     {
       type: Schema.Types.ObjectId,
-      ref: "todo",
+      ref: "Todo",
     },
   ],
 });

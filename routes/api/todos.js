@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 
 const Todo = require("../../models/Todo");
+const User = require("../../models/User");
 
 // Validator
 const validateTodoInput = require("../../validation/todoItem");
@@ -14,7 +15,15 @@ router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.json(req.user);
+    User.findOne({ _id: req.user.id })
+      .populate("todo_list", ["description", "created_at"])
+      .then((user) => {
+        if (!user) {
+          res.status(404).json({ usernotfound: "User not found" });
+        } else {
+          res.json(req.user);
+        }
+      });
   }
 );
 
@@ -26,9 +35,26 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateTodoInput(req.body);
-    res.json({ success: "todo" });
+
+    if (!isValid) {
+      res.status(400).json(errors);
+    }
+    const newTodo = new Todo({
+      description: req.body.description,
+      have_due: req.body.have_due,
+      due_date: req.body.have_due ? req.body.due_date : "",
+      is_daily: req.body.is_daily,
+    });
+    newTodo.owner = req.user.id;
+    newTodo
+      .save()
+      .then((todoObj) => {
+        res.json(todoObj);
+      })
+      .catch((err) => console.log(err));
   }
 );
+// TODO Solve populate, link to user and return res
 
 // @route   PUT api/todo/:id
 // @desc    Update a todo's attribute

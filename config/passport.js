@@ -15,8 +15,6 @@ module.exports = (passport) => {
       User.findOne({ username: jwt_payload.username }, "-password")
         .then((user) => {
           if (user) {
-            console.log(user);
-            user.password;
             return done(null, user);
           }
           return done(null, false);
