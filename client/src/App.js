@@ -1,25 +1,21 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Test from "./components/Test";
+import { Route, Switch, useHistory } from "react-router-dom";
+// Private Route
+import PrivateRoute from "./components/common/PrivateRoute";
+
+// Pages
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
+  // TODO Token validation from local storage
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Test />
-      </header>
+      <Switch>
+        <PrivateRoute exact path="/" component={Home} />
+      </Switch>
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/register" component={Register} />
     </div>
   );
 }

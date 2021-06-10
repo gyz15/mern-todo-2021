@@ -3,7 +3,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-// const cors = require("cors");
+const cors = require("cors");
+
+// Node env
+require("dotenv").config();
+const environment = process.env.NODE_ENV || "development";
 
 // Import Routes
 const users = require("./routes/api/users");
@@ -16,6 +20,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Cors Setup
+const corsConfig =
+  environment === "development"
+    ? {
+        origin: "http://localhost:3000",
+      }
+    : {};
+app.use(cors(corsConfig));
 
 // Connect to mongodb
 const db = require("./config/db").mongoURI;

@@ -6,6 +6,7 @@ require("dotenv").config();
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
+const Todo = require("../../models/Todo");
 const User = require("../../models/User");
 const router = express.Router();
 
@@ -91,5 +92,23 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+// @route   DELETE api/user/
+// @desc    Delete a user and delete all todos assigned to current user
+// @access  Private
+router.delete(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Todo.deleteMany({ owner: req.user.id }).then((callback) => {
+      User.findOneAndDelete({ _id: req.user.id }).then((user) => {
+        if (!user) {
+          return res.status(404).json({ usernotfound: "User not found" });
+        }
+        return res.json({ success: "Deleted" });
+      });
+    });
+  }
+);
 
 module.exports = router;
