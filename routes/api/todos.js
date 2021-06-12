@@ -59,7 +59,7 @@ router.post(
   }
 );
 // @route   PUT api/todo/:id
-// @desc    Update a todo's attribute
+// @desc    Update / edit a todo's attribute
 // @access  Private
 router.put(
   "/:id",
@@ -95,8 +95,8 @@ router.put(
                   { $set: updateTodo },
                   { new: true }
                 )
-                  .then((newTodo) => {
-                    return res.json(newTodo);
+                  .then((updatedTodo) => {
+                    return res.json(updatedTodo);
                   })
                   .catch((err) => console.log(err));
               } else {
@@ -146,7 +146,9 @@ router.delete(
               user.todoList.splice(removeIndex, 1);
               user
                 .save()
-                .then((user) => res.json({ success: "Todo deleted" }))
+                .then((user) =>
+                  res.json({ success: "Todo deleted", ...deleted })
+                )
                 .catch((err) => console.log(err));
             })
             .catch((err) => console.log(err));

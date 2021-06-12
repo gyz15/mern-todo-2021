@@ -1,14 +1,17 @@
-// TODO extract errors from redux state
 // TODO Split into component
+// Packages
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+
+// Actions
 import { loginUser } from "../actions/authActions";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const { errors } = useSelector((state) => state.errors);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -36,12 +39,14 @@ const Login = () => {
           placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
+        {errors.username && <small>{errors.username}</small>}
         <input
           type="password"
           value={password}
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
+        {errors.password && <small>{errors.password}</small>}
         <button type="sumbit">Login</button>
       </form>
     </div>

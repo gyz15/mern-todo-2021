@@ -1,5 +1,5 @@
 import axios from "../axios-config";
-import { SET_CURRENT_USER, SET_ERRORS } from "./types";
+import { SET_CURRENT_USER, SET_ERRORS, CLEAR_ERRORS } from "./types";
 import jwt_decode from "jwt-decode";
 import setOrDeleteAuthHeader from "../utils/setOrDeleteAuthHeader";
 
@@ -8,6 +8,9 @@ export const registerUser = (registerData, history) => (dispatch) => {
   axios
     .post("/api/user/register", registerData)
     .then((res) => {
+      dispatch({
+        type: CLEAR_ERRORS,
+      });
       history.push("/login");
     })
     .catch((err) => {
@@ -19,6 +22,9 @@ export const loginUser = (loginData) => (dispatch) => {
   axios
     .post("/api/user/login", loginData)
     .then((res) => {
+      dispatch({
+        type: CLEAR_ERRORS,
+      });
       const { token } = res.data;
       setOrDeleteAuthHeader(token);
       localStorage.setItem("jwtToken", token);

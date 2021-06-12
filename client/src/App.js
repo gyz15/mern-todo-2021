@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute exact path={["/", "/todo/:id"]} component={Home} />
       </Switch>
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
