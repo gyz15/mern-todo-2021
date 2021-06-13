@@ -38,11 +38,11 @@ function App() {
   }, [dispatch]);
   return (
     <div className="App">
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/register" component={Register} />
       <Switch>
         <PrivateRoute exact path={["/", "/todo/:id"]} component={Home} />
       </Switch>
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
     </div>
   );
 }

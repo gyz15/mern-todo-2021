@@ -2,7 +2,7 @@
 // Packages
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 // Actions
 import { loginUser } from "../actions/authActions";
@@ -14,6 +14,12 @@ const Login = () => {
   const { errors } = useSelector((state) => state.errors);
   const history = useHistory();
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const loginRedirectUrl =
+    location.state && location.state.loginRedirectUrl !== null
+      ? location.state.loginRedirectUrl
+      : "/";
 
   const loginHandler = (e) => {
     e.preventDefault();
@@ -26,9 +32,9 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/");
+      history.push(loginRedirectUrl);
     }
-  }, [isAuthenticated, history]);
+  }, [isAuthenticated]);
   return (
     <div>
       <h1>Login</h1>

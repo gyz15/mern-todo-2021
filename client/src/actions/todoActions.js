@@ -5,7 +5,6 @@ import {
   SET_ERRORS,
   SET_TODOS,
   ADD_TODO,
-  EDIT_TODO,
   DELETE_TODO,
   SORT_TODO_BY,
   EDIT_TODO,
