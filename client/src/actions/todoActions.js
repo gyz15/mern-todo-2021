@@ -48,9 +48,9 @@ export const updateTodo = (updateTodoId, updateTodoData) => (dispatch) => {
     .then((res) => {
       dispatch({ type: CLEAR_ERRORS });
       dispatch({ type: EDIT_TODO, payload: res.data });
-      console.log(res.data);
     })
     .catch((err) => {
+      console.log(err);
       dispatch({ type: SET_ERRORS, payload: err.response.data });
       console.log(err.response.data);
     });
