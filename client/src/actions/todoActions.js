@@ -60,13 +60,13 @@ export const deleteTodo = (deleteTodoId) => (dispatch) => {
   axios
     .delete(`/api/todo/${deleteTodoId}`)
     .then((res) => {
-      dispatch({ type: CLEAR_ERRORS });
-      dispatch({ type: DELETE_TODO, payload: res.data });
       console.log(res.data);
+      dispatch({ type: CLEAR_ERRORS });
+      dispatch({ type: DELETE_TODO, payload: res.data._doc });
     })
     .catch((err) => {
+      console.log(err);
       dispatch({ type: SET_ERRORS, payload: err.response.data });
-      console.log(err.response.data);
     });
 };
 // Sort todo by

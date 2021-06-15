@@ -41,12 +41,12 @@ export default function todoReducer(state = initialState, action) {
     case DELETE_TODO:
       return {
         ...state,
-        todos: editObjInArr(action.payload, ...state.todos, true),
+        todos: editObjInArr(action.payload, [...state.todos], true),
       };
     case SORT_TODO_BY:
       return {
         ...state,
-        todos: sortTodoBy(action.payload, ...state.todos),
+        todos: sortTodoBy(action.payload, [...state.todos]),
       };
     default:
       return state;

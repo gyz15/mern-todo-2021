@@ -14,6 +14,7 @@ import setOrDeleteAuthHeader from "./utils/setOrDeleteAuthHeader";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import CreateTodo from "./components/todo/CreateTodo";
 
 // Actions
 import { setUser, logoutUser } from "./actions/authActions";
@@ -41,6 +42,7 @@ function App() {
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Switch>
+        <PrivateRoute exact path="/todo/add" component={CreateTodo} />
         <PrivateRoute exact path={["/", "/todo/:id"]} component={Home} />
       </Switch>
     </div>
