@@ -42,10 +42,10 @@ router.post(
     // Create Todo Obj
     const newTodo = new Todo({
       description: req.body.description,
-      have_due: req.body.have_due,
-      due_date: req.body.have_due ? req.body.due_date : "",
-      is_daily: req.body.is_daily,
-      created_at: Date.now(),
+      haveDue: req.body.haveDue,
+      dueDate: req.body.haveDue ? req.body.dueDate : "",
+      isDaily: req.body.isDaily,
+      createdAt: Date.now(),
       done: false,
     });
     newTodo.owner = req.user.id;
@@ -72,9 +72,9 @@ router.put(
     }
     const updateTodo = {
       description: req.body.description,
-      have_due: req.body.have_due,
-      due_date: req.body.have_due ? req.body.due_date : "",
-      is_daily: req.body.is_daily,
+      haveDue: req.body.haveDue,
+      dueDate: req.body.haveDue ? req.body.dueDate : "",
+      isDaily: req.body.isDaily,
       done: req.body.done === "true" || req.body.done === true,
     };
 

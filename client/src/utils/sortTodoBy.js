@@ -1,7 +1,13 @@
+// TODO complete sort by function
 // Sort by
-// due_date ascending,descending
-// have_due true->false / false-> true
-// created_at asc desc
-export default function sortTodoBy(sortType, todoList) {
-  return [...todoList];
+// createdAt asc desc
+// dueDate ascending,descending
+// haveDue true->false / false -> true
+export default function sortTodoBy(sortBy, ascending, todoList) {
+  let newArr = todoList.sort((a, b) => a[sortBy] - b[sortBy]);
+  if (!ascending) {
+    newArr.reverse();
+  }
+
+  return newArr;
 }

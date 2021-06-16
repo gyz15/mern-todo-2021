@@ -7,14 +7,14 @@ const TodoSchema = new Schema({
     type: String,
     required: true,
   },
-  have_due: {
+  haveDue: {
     type: Boolean,
     default: false,
   },
-  due_date: {
+  dueDate: {
     type: Date,
   },
-  is_daily: {
+  isDaily: {
     type: Boolean,
     default: false,
   },
@@ -22,7 +22,7 @@ const TodoSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },

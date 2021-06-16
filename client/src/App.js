@@ -25,16 +25,18 @@ function App() {
   // Local Storage Token Validation
   useEffect(() => {
     if (localStorage.jwtToken) {
-      // TODO handle error if user set custom jwt token
       setOrDeleteAuthHeader(localStorage.jwtToken);
-      const decoded = jwt_decode(localStorage.jwtToken);
-
-      const currentTime = Date.now() / 1000;
-      if (decoded.exp < currentTime) {
-        // Clear user token and set not authenticated if token expired
+      try {
+        const decoded = jwt_decode(localStorage.jwtToken);
+        const currentTime = Date.now() / 1000;
+        if (decoded.exp < currentTime) {
+          // Clear user token and set not authenticated if token expired
+          dispatch(logoutUser());
+        }
+        dispatch(setUser(decoded));
+      } catch (err) {
         dispatch(logoutUser());
       }
-      dispatch(setUser(decoded));
     }
   }, [dispatch]);
   return (

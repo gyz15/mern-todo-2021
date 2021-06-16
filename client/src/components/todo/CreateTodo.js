@@ -1,24 +1,27 @@
 // TODO combine with update form
+// TODO extract error from redux state
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { addTodo } from "../../actions/todoActions";
 
 const CreateTodo = () => {
   const [description, setDescription] = useState("");
-  const [have_due, setHave_due] = useState(false);
-  const [due_date, setDue_date] = useState("");
-  const [is_daily, setIs_Daily] = useState(false);
+  const [haveDue, sethaveDue] = useState(false);
+  const [dueDate, setDue_date] = useState("");
+  const [isDaily, setIs_Daily] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const todoCreateHandler = (e) => {
     e.preventDefault();
     const createData = {
       description: description,
-      have_due: have_due,
-      due_date: due_date,
-      is_daily: is_daily,
+      haveDue: haveDue,
+      dueDate: dueDate,
+      isDaily: isDaily,
     };
-    dispatch(addTodo(createData));
+    dispatch(addTodo(createData, history));
   };
 
   return (
@@ -39,15 +42,15 @@ const CreateTodo = () => {
         />
         <input
           type="checkbox"
-          value={have_due}
+          checked={haveDue}
           onChange={(e) => {
-            setHave_due(e.target.value);
+            sethaveDue(!haveDue);
           }}
           placeholder="Have Due"
         />
         <input
           type="date"
-          value={due_date}
+          value={dueDate}
           onChange={(e) => {
             setDue_date(e.target.value);
           }}
@@ -55,9 +58,9 @@ const CreateTodo = () => {
         />
         <input
           type="checkbox"
-          value={is_daily}
+          checked={isDaily}
           onChange={(e) => {
-            setIs_Daily(e.target.value);
+            setIs_Daily(!isDaily);
           }}
           placeholder="Is Daily"
         />

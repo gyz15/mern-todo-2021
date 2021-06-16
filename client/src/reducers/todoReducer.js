@@ -1,4 +1,4 @@
-// TODO complete sortTodoBy and editObjInArr function
+// TODO complete sortTodoBy  function
 import {
   TODO_LOADING,
   SET_TODOS,
@@ -46,7 +46,11 @@ export default function todoReducer(state = initialState, action) {
     case SORT_TODO_BY:
       return {
         ...state,
-        todos: sortTodoBy(action.payload, [...state.todos]),
+        todos: sortTodoBy(
+          action.payload.sortByValue,
+          action.payload.ascending,
+          [...state.todos]
+        ),
       };
     default:
       return state;

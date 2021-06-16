@@ -1,5 +1,3 @@
-// TODO check requeted path in user todos' id, if not redirect
-// TODO exit icon to redirect user back to home
 // TODO solve when straight use url will redirect to home page
 // TODO use camelCase instead of snake_case on state
 import React, { useEffect, useState } from "react";
@@ -12,9 +10,9 @@ const TodoDetail = ({ todos, pathId }) => {
   const dispatch = useDispatch();
 
   const [description, setDescription] = useState("");
-  const [have_due, setHave_due] = useState(false);
-  const [due_date, setDue_date] = useState("");
-  const [is_daily, setIs_Daily] = useState(false);
+  const [haveDue, sethaveDue] = useState(false);
+  const [dueDate, setDue_date] = useState("");
+  const [isDaily, setIs_Daily] = useState(false);
 
   useEffect(() => {
     const todoObjOrNone = pathIdInTodos(pathId, todos);
@@ -27,9 +25,9 @@ const TodoDetail = ({ todos, pathId }) => {
 
   const loadTodoData = (todoObj) => {
     setDescription(todoObj.description);
-    setHave_due(todoObj.have_due);
-    setDue_date(todoObj.due_date ? todoObj.due_date : "");
-    setIs_Daily(todoObj.is_daily);
+    sethaveDue(todoObj.haveDue);
+    setDue_date(todoObj.dueDate ? todoObj.dueDate : "");
+    setIs_Daily(todoObj.isDaily);
   };
 
   const userCloseEditWindowHandler = () => {
@@ -40,11 +38,10 @@ const TodoDetail = ({ todos, pathId }) => {
     e.preventDefault();
     const updateData = {
       description: description,
-      have_due: have_due,
-      due_date: due_date,
-      is_daily: is_daily,
+      haveDue: haveDue,
+      dueDate: dueDate,
+      isDaily: isDaily,
     };
-    // TODO dispatch update todo action
     dispatch(updateTodo(pathId, updateData));
     console.log(updateData);
   };
@@ -69,15 +66,15 @@ const TodoDetail = ({ todos, pathId }) => {
         />
         <input
           type="checkbox"
-          value={have_due}
+          value={haveDue}
           onChange={(e) => {
-            setHave_due(e.target.value);
+            sethaveDue(e.target.value);
           }}
           placeholder="Have Due"
         />
         <input
           type="date"
-          value={due_date}
+          value={dueDate}
           onChange={(e) => {
             setDue_date(e.target.value);
           }}
@@ -85,7 +82,7 @@ const TodoDetail = ({ todos, pathId }) => {
         />
         <input
           type="checkbox"
-          value={is_daily}
+          value={isDaily}
           onChange={(e) => {
             setIs_Daily(e.target.value);
           }}

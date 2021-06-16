@@ -28,13 +28,14 @@ export const getUserTodos = () => (dispatch) => {
     });
 };
 // Add a todo
-export const addTodo = (newTodoData) => (dispatch) => {
+export const addTodo = (newTodoData, history) => (dispatch) => {
   axios
     .post("/api/todo/add", newTodoData)
     .then((res) => {
       console.log(res.data);
       dispatch({ type: CLEAR_ERRORS });
       dispatch({ type: ADD_TODO, payload: res.data });
+      history.push("/");
     })
     .catch((err) => {
       dispatch({ type: SET_ERRORS, payload: err.response.data });
@@ -70,10 +71,10 @@ export const deleteTodo = (deleteTodoId) => (dispatch) => {
     });
 };
 // Sort todo by
-export const sortTodo = (sortByValue) => (dispatch) => {
+export const sortTodo = (sortByValue, ascending) => (dispatch) => {
   dispatch({
     type: SORT_TODO_BY,
-    payload: sortByValue,
+    payload: { sortByValue: sortByValue, ascending: ascending },
   });
 };
 
