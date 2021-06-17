@@ -34,13 +34,16 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getUserTodos());
-    dispatch(sortTodo(sortBy));
-  }, [dispatch]);
+    dispatch(sortTodo(sortBy, ascending));
+  }, []);
 
   const onSortByChange = (e) => {
     setSortBy(e.target.value);
     dispatch(sortTodo(sortBy, ascending));
   };
+  useEffect(() => {
+    dispatch(sortTodo(sortBy, ascending));
+  }, [ascending]);
 
   return (
     <div>
@@ -58,10 +61,7 @@ const Home = () => {
         type="checkbox"
         value={ascending}
         onChange={(e) => {
-          // TODO Solve ascending err
-          setAscending(e.target.checked);
-          console.log(ascending);
-          dispatch(sortTodo(sortBy, ascending));
+          setAscending(!ascending);
         }}
       />
       <div className="todos-container">

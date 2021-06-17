@@ -1,19 +1,19 @@
 // TODO Split into component
+// TODO Themed colour which has config
 // Packages
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
-// Actions
-import { loginUser } from "../actions/authActions";
+// Components
+import LoginForm from "../components/auth/LoginForm";
+
+// Styling
+import styled from "styled-components";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const { errors } = useSelector((state) => state.errors);
   const history = useHistory();
-  const dispatch = useDispatch();
   const location = useLocation();
 
   const loginRedirectUrl =
@@ -21,42 +21,45 @@ const Login = () => {
       ? location.state.loginRedirectUrl
       : "/";
 
-  const loginHandler = (e) => {
-    e.preventDefault();
-    const loginData = {
-      username: username,
-      password: password,
-    };
-    dispatch(loginUser(loginData, history));
-  };
-
   useEffect(() => {
     if (isAuthenticated) {
       history.push(loginRedirectUrl);
     }
   }, [isAuthenticated]);
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={(e) => loginHandler(e)}>
-        <input
-          type="text"
-          value={username}
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        {errors.username && <small>{errors.username}</small>}
-        <input
-          type="password"
-          value={password}
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {errors.password && <small>{errors.password}</small>}
-        <button type="sumbit">Login</button>
-      </form>
-    </div>
+    <LoginPage>
+      <LoginContainer>
+        <h1>Login</h1>
+        <LoginFormContainer>
+          <LoginForm />
+        </LoginFormContainer>
+      </LoginContainer>
+    </LoginPage>
   );
 };
 
 export default Login;
+
+const LoginPage = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LoginContainer = styled.div`
+  width: 50%;
+  border: 1px black solid;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const LoginFormContainer = styled.div`
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+`;
