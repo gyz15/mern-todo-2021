@@ -1,3 +1,5 @@
+// TODO display errrors in small tag with red styling (refer figmaa)
+
 // Packages
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,12 +28,15 @@ const LoginForm = () => {
   };
   return (
     <form onSubmit={(e) => loginHandler(e)}>
+      <label>Username</label>
       <Input
         value={username}
         placeholder="Username"
         onChange={(e) => setUsername(e.target.value)}
         error={errors.username}
       />
+
+      <label>Password</label>
       <Input
         type="password"
         value={password}
@@ -39,7 +44,7 @@ const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         error={errors.password}
       />
-      <button type="sumbit">Login</button>
+      <button type="sumbit">Let's Go</button>
     </form>
   );
 };

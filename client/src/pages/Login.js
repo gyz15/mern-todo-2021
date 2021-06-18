@@ -1,5 +1,7 @@
 // TODO Split into component
 // TODO Themed colour which has config
+// TODO styling according to figma
+
 // Packages
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -7,6 +9,7 @@ import { useHistory, useLocation } from "react-router-dom";
 
 // Components
 import LoginForm from "../components/auth/LoginForm";
+import Logo from "../components/common/Logo";
 
 // Styling
 import styled from "styled-components";
@@ -28,6 +31,13 @@ const Login = () => {
   }, [isAuthenticated]);
   return (
     <LoginPage>
+      <InfoContainer>
+        <Logo />
+        <p>
+          MERN Todo App 2021 helps you to record your daily todos and notify you
+          every hour
+        </p>
+      </InfoContainer>
       <LoginContainer>
         <h1>Login</h1>
         <LoginFormContainer>
@@ -63,3 +73,5 @@ const LoginFormContainer = styled.div`
     flex-direction: column;
   }
 `;
+
+const InfoContainer = styled.div``;

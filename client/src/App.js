@@ -19,6 +19,9 @@ import CreateTodo from "./components/todo/CreateTodo";
 // Actions
 import { setUser, logoutUser } from "./actions/authActions";
 
+// Styling
+import GlobalStyles from "./components/style/GlobalStyles";
+
 function App() {
   const dispatch = useDispatch();
 
@@ -41,6 +44,7 @@ function App() {
   }, [dispatch]);
   return (
     <div className="App">
+      <GlobalStyles />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Switch>
