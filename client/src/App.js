@@ -21,6 +21,8 @@ import { setUser, logoutUser } from "./actions/authActions";
 
 // Styling
 import GlobalStyles from "./components/style/GlobalStyles";
+import AppTheme from "./components/style/Theme";
+import { ThemeProvider } from "styled-components";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,13 +46,15 @@ function App() {
   }, [dispatch]);
   return (
     <div className="App">
-      <GlobalStyles />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
-      <Switch>
-        <PrivateRoute exact path="/todo/add" component={CreateTodo} />
-        <PrivateRoute exact path={["/", "/todo/:id"]} component={Home} />
-      </Switch>
+      <ThemeProvider theme={AppTheme}>
+        <GlobalStyles />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Switch>
+          <PrivateRoute exact path="/todo/add" component={CreateTodo} />
+          <PrivateRoute exact path={["/", "/todo/:id"]} component={Home} />
+        </Switch>
+      </ThemeProvider>
     </div>
   );
 }

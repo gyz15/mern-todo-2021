@@ -9,7 +9,7 @@ import { useHistory, useLocation } from "react-router-dom";
 
 // Components
 import LoginForm from "../components/auth/LoginForm";
-import Logo from "../components/common/Logo";
+import Logo from "../components/Icon/Logo";
 
 // Styling
 import styled from "styled-components";
@@ -56,6 +56,7 @@ const LoginPage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: ${(props) => props.theme.bgLinear};
 `;
 
 const LoginContainer = styled.div`
