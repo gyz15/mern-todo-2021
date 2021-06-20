@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const Input = ({
   type = "text",
@@ -15,9 +16,14 @@ const Input = ({
         placeholder={placeholder}
         onChange={onChange}
       ></input>
-      {error && <small>{error}</small>}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </>
   );
 };
+
+const ErrorMessage = styled.small`
+  color: ${(props) => props.theme.fontColorErr};
+  font-weight: 500;
+`;
 
 export default Input;

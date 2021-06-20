@@ -33,8 +33,7 @@ const GlobalStyles = createGlobalStyle`
     }
     p{
         font-size:1.2rem;
-        line-height:200%;
-        color:#696969;
+        line-height:120%;
     }
     a{
         text-decoration:none;
@@ -44,8 +43,11 @@ const GlobalStyles = createGlobalStyle`
         display:block;
     }
     input{    
-    font-weight: bold;
-    font-family: "Monserrat", sans-serif;}
+        font-family: "Montserrat", sans-serif;
+    }
+    button{
+        font-family:"Montserrat"
+    }
 `;
 
 export default GlobalStyles;
