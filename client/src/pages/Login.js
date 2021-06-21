@@ -5,7 +5,7 @@
 // Packages
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 
 // Components
 import LoginForm from "../components/auth/LoginForm";
@@ -33,16 +33,21 @@ const Login = () => {
     <LoginPage>
       <MainContainer>
         <InfoContainer>
-          <Logo size={150} />
-          <LoginParagraph>
-            MERN Todo App 2021 helps you to record your daily todos and notify
-            you every hour
-          </LoginParagraph>
+          <Info>
+            <Logo size={150} />
+            <LoginParagraph>
+              MERN Todo App 2021 helps you to record your daily todos and notify
+              you every hour
+            </LoginParagraph>
+          </Info>
         </InfoContainer>
         <LoginContainer>
           <h1>Login</h1>
           <LoginFormContainer>
             <LoginForm />
+            <Link to="/register">
+              Do not have an account? Click here to register &#8599;
+            </Link>
           </LoginFormContainer>
         </LoginContainer>
       </MainContainer>
@@ -69,24 +74,28 @@ const LoginContainer = styled.div`
   flex-direction: column;
   background: ${(props) => props.theme.color_1};
   border-radius: 2.5rem;
+  a {
+    display: inline-block;
+    margin: 0.5rem 0rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const LoginFormContainer = styled.div`
   form {
-    /* display: flex;
-    flex-direction: column; */
     label {
       font-size: 1.2rem;
       font-weight: 500;
-    }
-    input {
-      display: block;
     }
   }
 `;
 
 const InfoContainer = styled.div`
   width: 50%;
+  display: flex;
+  justify-content: center;
 `;
 
 // TODO Main container flex direction change if screen width change
@@ -98,4 +107,15 @@ const MainContainer = styled.div`
 const LoginParagraph = styled.p`
   font-weight: 500;
   font-size: 1.5rem;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    display: block;
+    width: 60%;
+  }
 `;

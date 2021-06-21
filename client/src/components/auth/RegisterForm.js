@@ -1,36 +1,36 @@
-// TODO display errrors in small tag with red styling (refer figmaa)
-
-// Packages
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// Actions
+import { registerUser } from "../../actions/authActions";
+
 // Components
 import Input from "../common/Input";
 
-// Actions
-import { loginUser } from "../../actions/authActions";
-
-// Styles
+// Styling
 import styled from "styled-components";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const { errors } = useSelector((state) => state.errors);
 
-  const loginHandler = (e) => {
+  const registerHandler = (e) => {
     e.preventDefault();
-    const loginData = {
+    const registerData = {
       username: username,
       password: password,
+      password2: password2,
     };
-    dispatch(loginUser(loginData, history));
+    dispatch(registerUser(registerData, history));
   };
+
   return (
-    <form onSubmit={(e) => loginHandler(e)}>
+    <form onSubmit={(e) => registerHandler(e)}>
       <InputContainer>
         <Input
           label="Username"
@@ -48,8 +48,16 @@ const LoginForm = () => {
           error={errors.password}
         />
       </InputContainer>
-
-      <LoginButton type="sumbit">Let's Go</LoginButton>
+      <InputContainer>
+        <Input
+          label="Confirm Password"
+          type="password"
+          value={password2}
+          onChange={(e) => setPassword2(e.target.value)}
+          error={errors.password2}
+        />
+      </InputContainer>
+      <RegisterButton type="sumbit">Register</RegisterButton>
     </form>
   );
 };
@@ -73,7 +81,7 @@ const InputContainer = styled.div`
   }
 `;
 
-const LoginButton = styled.button`
+const RegisterButton = styled.button`
   margin-top: 1rem;
   outline: none;
   border: none;
@@ -89,5 +97,4 @@ const LoginButton = styled.button`
     cursor: pointer;
   }
 `;
-
-export default LoginForm;
+export default RegisterForm;

@@ -1,66 +1,59 @@
-// TODO extract errors from redux state
-// TODO Split into component
 // Packages
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
+import styled from "styled-components";
 
-// Actions
-import { registerUser } from "../actions/authActions";
+// Components
+import RegisterForm from "../components/auth/RegisterForm";
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const { errors } = useSelector((state) => state.errors);
   const history = useHistory();
-  const dispatch = useDispatch();
-
-  const registerHandler = (e) => {
-    e.preventDefault();
-    const registerData = {
-      username: username,
-      password: password,
-      password2: password2,
-    };
-    dispatch(registerUser(registerData, history));
-  };
-
   useEffect(() => {
     if (isAuthenticated) {
       history.push("/");
     }
   }, [isAuthenticated, history]);
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={(e) => registerHandler(e)}>
-        <input
-          type="text"
-          value={username}
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        {errors.username && <small>{errors.username}</small>}
-        <input
-          type="password"
-          value={password}
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {errors.password && <small>{errors.password}</small>}
-        <input
-          type="password"
-          value={password2}
-          placeholder="Confirm Password"
-          onChange={(e) => setPassword2(e.target.value)}
-        />
-        {errors.password2 && <small>{errors.password2}</small>}
-        <button type="sumbit">Register</button>
-      </form>
-    </div>
+    <RegisterPage>
+      <RegisterContainer>
+        <h1>Register</h1>
+        <RegisterForm />
+        <Link to="/login">Already have an account? Click here to login.</Link>
+      </RegisterContainer>
+    </RegisterPage>
   );
 };
 
+const RegisterPage = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${(props) => props.theme.bgLinear};
+`;
+
+const RegisterContainer = styled.div`
+  width: 40%;
+  display: flex;
+  padding: 1.5rem;
+  flex-direction: column;
+  border-radius: 2.5rem;
+  background: ${(props) => props.theme.color_1};
+  form {
+    label {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+  }
+  a {
+    display: inline-block;
+    margin: 0.5rem 0rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
 export default Register;

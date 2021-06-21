@@ -65,10 +65,14 @@ const Home = () => {
         }}
       />
       <div className="todos-container">
-        {!loading && todos.length > 0 ? (
-          todos.map((todoObj) => (
-            <TodoObjBlockView data={todoObj} key={todoObj._id} />
-          ))
+        {!loading ? (
+          todos.length > 0 ? (
+            todos.map((todoObj) => (
+              <TodoObjBlockView data={todoObj} key={todoObj._id} />
+            ))
+          ) : (
+            ""
+          )
         ) : (
           <Spinner />
         )}
