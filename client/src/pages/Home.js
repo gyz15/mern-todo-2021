@@ -8,10 +8,14 @@ import { useLocation, useHistory } from "react-router-dom";
 import TodoDetail from "../components/todo/TodoDetail";
 import TodoObjBlockView from "../components/todo/TodoObjBlockView";
 import Spinner from "../components/common/Spinner";
+import UserIcon from "../components/Icon/UserIcon";
 
 // Actions
 import { logoutUser, deleteUser } from "../actions/authActions";
 import { getUserTodos, sortTodo } from "../actions/todoActions";
+
+// Styling
+import styled from "styled-components";
 
 const Home = () => {
   const { todos, loading } = useSelector((state) => state.todo);
@@ -46,39 +50,71 @@ const Home = () => {
   }, [ascending]);
 
   return (
-    <div>
-      <h1>home</h1>
-      {!loading && pathId && <TodoDetail todos={todos} pathId={pathId} />}
-      <button onClick={handleLogout}>Logout</button>
-      <button onClick={handleDelete}>Delete This Account</button>
-      <button onClick={handleCreateTodo}>Create a new Todo</button>
-      <p>Sort by:</p>
-      <select value={sortBy} onChange={onSortByChange}>
-        <option value="dueDate">Due Date</option>
-        <option value="createdAt">Created At</option>
-      </select>
-      <input
-        type="checkbox"
-        value={ascending}
-        onChange={(e) => {
-          setAscending(!ascending);
-        }}
-      />
-      <div className="todos-container">
-        {!loading ? (
-          todos.length > 0 ? (
-            todos.map((todoObj) => (
-              <TodoObjBlockView data={todoObj} key={todoObj._id} />
-            ))
+    <HomePage>
+      <HomeContainer>
+        <TitleContainer>
+          <UserIcon size={2} />
+          <HomeTitle>home</HomeTitle>
+        </TitleContainer>
+        {!loading && pathId && <TodoDetail todos={todos} pathId={pathId} />}
+        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleDelete}>Delete This Account</button>
+        <button onClick={handleCreateTodo}>Create a new Todo</button>
+        <p>Sort by:</p>
+        <select value={sortBy} onChange={onSortByChange}>
+          <option value="dueDate">Due Date</option>
+          <option value="createdAt">Created At</option>
+        </select>
+        <input
+          type="checkbox"
+          value={ascending}
+          onChange={(e) => {
+            setAscending(!ascending);
+          }}
+        />
+        <TodoContainer>
+          {!loading ? (
+            todos.length > 0 ? (
+              todos.map((todoObj) => (
+                <TodoObjBlockView data={todoObj} key={todoObj._id} />
+              ))
+            ) : (
+              ""
+            )
           ) : (
-            ""
-          )
-        ) : (
-          <Spinner />
-        )}
-      </div>
-    </div>
+            <Spinner />
+          )}
+        </TodoContainer>
+      </HomeContainer>
+    </HomePage>
   );
 };
+
+const HomePage = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${(props) => props.theme.bgLinear};
+`;
+
+const HomeContainer = styled.div`
+  width: 80%;
+`;
+
+const HomeTitle = styled.h1`
+  display: inline-block;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const TodoContainer = styled.div`
+  height: 500px;
+  overflow-y: scroll;
+`;
 
 export default Home;
