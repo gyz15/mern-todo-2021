@@ -48,6 +48,12 @@ const GlobalStyles = createGlobalStyle`
     button{
         font-family:"Montserrat"
     }
+    select{
+        font-family:"Montserrat"
+    }
+    option{
+        font-family:"Montserrat"
+    }
 `;
 
 export default GlobalStyles;
