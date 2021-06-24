@@ -84,9 +84,35 @@ const Home = () => {
         <TodoContainer>
           {!loading ? (
             todos.length > 0 ? (
-              todos.map((todoObj) => (
-                <TodoObjBlockView data={todoObj} key={todoObj._id} />
-              ))
+              todos.map(
+                (todoObj) =>
+                  !todoObj.done && (
+                    <TodoObjBlockView
+                      done={false}
+                      data={todoObj}
+                      key={todoObj._id}
+                    />
+                  )
+              )
+            ) : (
+              ""
+            )
+          ) : (
+            <Spinner />
+          )}
+          <h1>Seperate line here and add new task</h1>
+          {!loading ? (
+            todos.length > 0 ? (
+              todos.map(
+                (todoObj) =>
+                  todoObj.done && (
+                    <TodoObjBlockView
+                      done={true}
+                      data={todoObj}
+                      key={todoObj._id}
+                    />
+                  )
+              )
             ) : (
               ""
             )
@@ -124,7 +150,8 @@ const TitleContainer = styled.div`
 `;
 
 const TodoContainer = styled.div`
-  height: 500px;
+  max-height: 35rem;
+  padding: 1rem;
   overflow-y: scroll;
 `;
 
