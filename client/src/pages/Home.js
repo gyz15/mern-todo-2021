@@ -10,7 +10,7 @@ import TodoObjBlockView from "../components/todo/TodoObjBlockView";
 import Spinner from "../components/common/Spinner";
 import UserIcon from "../components/Icon/UserIcon";
 import SortIcon from "../components/Icon/SortIcon";
-import DropDownIcon from "../images/drop_down_icon.svg";
+import AddTodoBlock from "../components/todo/AddTodoBlock";
 
 // Actions
 import { logoutUser, deleteUser } from "../actions/authActions";
@@ -79,7 +79,6 @@ const Home = () => {
         {!loading && pathId && <TodoDetail todos={todos} pathId={pathId} />}
         <button onClick={handleLogout}>Logout</button>
         <button onClick={handleDelete}>Delete This Account</button>
-        <button onClick={handleCreateTodo}>Create a new Todo</button>
 
         <TodoContainer>
           {!loading ? (
@@ -100,7 +99,7 @@ const Home = () => {
           ) : (
             <Spinner />
           )}
-          <h1>Seperate line here and add new task</h1>
+          <AddTodoBlock handleOnClick={handleCreateTodo} />
           {!loading ? (
             todos.length > 0 ? (
               todos.map(
@@ -150,9 +149,12 @@ const TitleContainer = styled.div`
 `;
 
 const TodoContainer = styled.div`
-  max-height: 35rem;
-  padding: 1rem;
+  max-height: 36rem;
+  margin-top: 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   overflow-y: scroll;
+  background: #ffffff;
+  border-radius: 1rem;
 `;
 
 const SortSelect = styled.select`

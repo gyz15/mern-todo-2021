@@ -49,7 +49,7 @@ const CreateTodo = () => {
           placeholder="Have Due"
         />
         <input
-          type="date"
+          type="datetime-local"
           value={dueDate}
           onChange={(e) => {
             setDue_date(e.target.value);

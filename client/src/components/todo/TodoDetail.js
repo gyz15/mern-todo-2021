@@ -11,8 +11,9 @@ const TodoDetail = ({ todos, pathId }) => {
 
   const [description, setDescription] = useState("");
   const [haveDue, sethaveDue] = useState(false);
-  const [dueDate, setDue_date] = useState("");
-  const [isDaily, setIs_Daily] = useState(false);
+  const [dueDate, setDueDate] = useState("");
+  const [isDaily, setIsDaily] = useState(false);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const todoObjOrNone = pathIdInTodos(pathId, todos);
@@ -26,8 +27,9 @@ const TodoDetail = ({ todos, pathId }) => {
   const loadTodoData = (todoObj) => {
     setDescription(todoObj.description);
     sethaveDue(todoObj.haveDue);
-    setDue_date(todoObj.dueDate ? todoObj.dueDate : "");
-    setIs_Daily(todoObj.isDaily);
+    setDueDate(todoObj.dueDate ? todoObj.dueDate : "");
+    setIsDaily(todoObj.isDaily);
+    setDone(todoObj.done);
   };
 
   const userCloseEditWindowHandler = () => {
@@ -41,6 +43,7 @@ const TodoDetail = ({ todos, pathId }) => {
       haveDue: haveDue,
       dueDate: dueDate,
       isDaily: isDaily,
+      done: done,
     };
     dispatch(updateTodo(pathId, updateData));
     console.log(updateData);
@@ -68,15 +71,15 @@ const TodoDetail = ({ todos, pathId }) => {
           type="checkbox"
           value={haveDue}
           onChange={(e) => {
-            sethaveDue(e.target.value);
+            sethaveDue(!haveDue);
           }}
           placeholder="Have Due"
         />
         <input
-          type="date"
+          type="datetime-local"
           value={dueDate}
           onChange={(e) => {
-            setDue_date(e.target.value);
+            setDueDate(e.target.value);
           }}
           placeholder="Due Date"
         />
@@ -84,7 +87,7 @@ const TodoDetail = ({ todos, pathId }) => {
           type="checkbox"
           value={isDaily}
           onChange={(e) => {
-            setIs_Daily(e.target.value);
+            setIsDaily(!isDaily);
           }}
           placeholder="Is Daily"
         />

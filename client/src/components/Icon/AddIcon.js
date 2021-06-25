@@ -6,8 +6,8 @@ const AddIcon = () => {
     <div>
       <img
         src={add_icon}
-        alt="Cancel"
-        style={{ width: "200px", margin: "auto", display: "block" }}
+        alt="Add New Todo"
+        style={{ width: "2rem", margin: "auto", display: "block" }}
       />
     </div>
   );

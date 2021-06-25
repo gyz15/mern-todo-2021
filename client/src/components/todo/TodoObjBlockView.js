@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteTodo, updateTodo } from "../../actions/todoActions";
 import DoneIconSet from "../Icon/DoneIconSet";
 import DeleteIcon from "../Icon/DeleteIcon";
+import Moment from "react-moment";
 
 // Styling
 import styled from "styled-components";
@@ -25,16 +26,25 @@ const TodoObjBlockView = ({ data, done = true }) => {
   return (
     <TodoDiv onDoubleClick={editHandler} done={done}>
       <DoneIconSet done={done} setDone={setDone} />
-      <Description done={done}>{data.description}</Description>
+      <DescriptionDiv done={done}>
+        <Description>{data.description}</Description>
+        {data.dueDate ? (
+          <DueDate>
+            Due Date: <Moment format="D/M/YY, h:mm a">{data.dueDate}</Moment>
+          </DueDate>
+        ) : (
+          ""
+        )}
+      </DescriptionDiv>
       <AlignRight>
-        <DeleteIcon deleteHandler={setDelete} />
+        <DeleteIcon done={done} deleteHandler={setDelete} />
       </AlignRight>
     </TodoDiv>
   );
 };
 
 const Description = styled.h3`
-  text-decoration: ${(props) => (props.done ? "line-through" : "none")};
+  padding: 0rem;
 `;
 
 const TodoDiv = styled.div`
@@ -51,6 +61,23 @@ const TodoDiv = styled.div`
 
 const AlignRight = styled.div`
   margin-left: auto;
+`;
+
+const DescriptionDiv = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0rem 0rem 0rem 1rem;
+  * {
+    color: ${(props) =>
+      props.done ? props.theme.fontColorLight : props.theme.fontColorDark};
+    text-decoration: ${(props) => (props.done ? "line-through" : "none")};
+  }
+`;
+
+const DueDate = styled.h5`
+  margin: 0rem;
 `;
 
 export default TodoObjBlockView;
