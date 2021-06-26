@@ -1,17 +1,30 @@
 // TODO combine with update form
 // TODO extract error from redux state
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+// TODO when user ticked isDaily disabled haveDueDate and vice versa
+// TODO Style checkbox & add todo form
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addTodo } from "../../actions/todoActions";
+import Input from "../common/Input";
+import CheckboxInput from "../common/CheckboxInput";
+import Cross from "../Icon/Cross";
+
+import styled from "styled-components";
 
 const CreateTodo = () => {
   const [description, setDescription] = useState("");
   const [haveDue, sethaveDue] = useState(false);
   const [dueDate, setDue_date] = useState("");
   const [isDaily, setIs_Daily] = useState(false);
+  const { errors } = useSelector((state) => state.errors);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // Normal Quit Handler for user clicking "X"
+  const quitHandler = () => {
+    history.push("/");
+  };
 
   const todoCreateHandler = (e) => {
     e.preventDefault();
@@ -24,50 +37,146 @@ const CreateTodo = () => {
     dispatch(addTodo(createData, history));
   };
 
+  useEffect(() => {
+    if (!haveDue) {
+      setDue_date("");
+    }
+  }, [haveDue]);
+
+  // Quit Handler for user clicking Card Shadow
+  const quitPage = (e) => {
+    if (e.target.classList.contains("create-page")) {
+      history.push("/");
+    }
+  };
+
   return (
-    <div>
-      <form
-        onSubmit={(e) => {
-          todoCreateHandler(e);
-        }}
-      >
-        <label>Description</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => {
-            setDescription(e.target.value);
+    <CreatePage className="create-page" onClick={quitPage}>
+      <CreateContainer>
+        <Taskbar>
+          <h2>Create A Todo</h2>
+          <Cross onClickHandler={quitHandler} right={true} />
+        </Taskbar>
+        <form
+          onSubmit={(e) => {
+            todoCreateHandler(e);
           }}
-          placeholder="Description"
-        />
-        <input
-          type="checkbox"
-          checked={haveDue}
-          onChange={(e) => {
-            sethaveDue(!haveDue);
-          }}
-          placeholder="Have Due"
-        />
-        <input
-          type="datetime-local"
-          value={dueDate}
-          onChange={(e) => {
-            setDue_date(e.target.value);
-          }}
-          placeholder="Due Date"
-        />
-        <input
-          type="checkbox"
-          checked={isDaily}
-          onChange={(e) => {
-            setIs_Daily(!isDaily);
-          }}
-          placeholder="Is Daily"
-        />
-        <button type="submit">Create</button>
-      </form>
-    </div>
+        >
+          <InputContainer>
+            <Input
+              type="text"
+              value={description}
+              label="Description"
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+              error={errors.description}
+            />
+          </InputContainer>
+          <InputContainer>
+            <CheckboxInput
+              type="checkbox"
+              checked={haveDue}
+              onChange={(e) => {
+                sethaveDue(!haveDue);
+              }}
+              label="Have Due Date"
+              error={errors.haveDue}
+            />
+          </InputContainer>
+          <InputContainer>
+            <DateDiv haveDue={haveDue}>
+              <Input
+                type="datetime-local"
+                value={dueDate}
+                onChange={(e) => {
+                  setDue_date(e.target.value);
+                }}
+                label="Due Date"
+                error={errors.dueDate}
+              />
+            </DateDiv>
+          </InputContainer>
+          <InputContainer>
+            <CheckboxInput
+              type="checkbox"
+              checked={isDaily}
+              onChange={(e) => {
+                setIs_Daily(!isDaily);
+              }}
+              label="Is Dailly"
+              error={errors.isDaily}
+            />
+          </InputContainer>
+          <button type="submit">Create</button>
+        </form>
+      </CreateContainer>
+    </CreatePage>
   );
 };
 
+const CreatePage = styled.div`
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: scroll;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+const CreateContainer = styled.div`
+  min-width: 25rem;
+  max-width: 30rem;
+  min-height: 30rem;
+  max-height: 40rem;
+  background-color: #edf7fe;
+  padding: 2rem;
+  border-radius: 1rem;
+`;
+
+const Taskbar = styled.div`
+  width: 100%;
+  display: flex;
+  h2 {
+    font-size: 2rem;
+    padding: 0rem;
+    font-weight: 550;
+  }
+`;
+
+const DateDiv = styled.div`
+  ${(props) => (!props.haveDue ? "display:none;" : "")}
+`;
+
+const InputContainer = styled.div`
+  margin: 0.5rem 0.8rem 0rem 0rem;
+  label {
+    display: block;
+    padding-bottom: 0.2rem;
+    font-weight: 450;
+    font-size: 1.5rem;
+  }
+  input[type="text"] {
+    width: 100%;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+  input[type="checkbox"] {
+    height: 1.5rem;
+    width: 1.5rem;
+    &::checked {
+      background: #ffffff;
+    }
+  }
+`;
 export default CreateTodo;

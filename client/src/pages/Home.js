@@ -18,6 +18,7 @@ import { getUserTodos, sortTodo } from "../actions/todoActions";
 
 // Styling
 import styled from "styled-components";
+import CreateTodo from "../components/todo/CreateTodo";
 
 const Home = () => {
   const { todos, loading } = useSelector((state) => state.todo);
@@ -76,49 +77,58 @@ const Home = () => {
             />
           </SortDiv>
         </TitleContainer>
-        {!loading && pathId && <TodoDetail todos={todos} pathId={pathId} />}
+        {!loading && pathId ? (
+          pathId === "add" ? (
+            <CreateTodo />
+          ) : (
+            <TodoDetail todos={todos} pathId={pathId} />
+          )
+        ) : (
+          ""
+        )}
         <button onClick={handleLogout}>Logout</button>
         <button onClick={handleDelete}>Delete This Account</button>
-
-        <TodoContainer>
-          {!loading ? (
-            todos.length > 0 ? (
-              todos.map(
-                (todoObj) =>
-                  !todoObj.done && (
-                    <TodoObjBlockView
-                      done={false}
-                      data={todoObj}
-                      key={todoObj._id}
-                    />
-                  )
+        <TodoBackground>
+          <TodoContainer>
+            {!loading ? (
+              todos.length > 0 ? (
+                todos.map(
+                  (todoObj) =>
+                    !todoObj.done && (
+                      <TodoObjBlockView
+                        done={false}
+                        data={todoObj}
+                        key={todoObj._id}
+                      />
+                    )
+                )
+              ) : (
+                ""
               )
             ) : (
-              ""
-            )
-          ) : (
-            <Spinner />
-          )}
-          <AddTodoBlock handleOnClick={handleCreateTodo} />
-          {!loading ? (
-            todos.length > 0 ? (
-              todos.map(
-                (todoObj) =>
-                  todoObj.done && (
-                    <TodoObjBlockView
-                      done={true}
-                      data={todoObj}
-                      key={todoObj._id}
-                    />
-                  )
+              <Spinner />
+            )}
+            <AddTodoBlock handleOnClick={handleCreateTodo} />
+            {!loading ? (
+              todos.length > 0 ? (
+                todos.map(
+                  (todoObj) =>
+                    todoObj.done && (
+                      <TodoObjBlockView
+                        done={true}
+                        data={todoObj}
+                        key={todoObj._id}
+                      />
+                    )
+                )
+              ) : (
+                ""
               )
             ) : (
-              ""
-            )
-          ) : (
-            <Spinner />
-          )}
-        </TodoContainer>
+              <Spinner />
+            )}
+          </TodoContainer>
+        </TodoBackground>
       </HomeContainer>
     </HomePage>
   );
@@ -137,7 +147,12 @@ const HomeContainer = styled.div`
   max-height: 80%;
   width: 80%;
 `;
-
+const TodoBackground = styled.div`
+  background: #ffffff;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  padding: 0rem 1rem 1rem 1rem;
+`;
 const HomeTitle = styled.h1`
   display: inline-block;
   margin: 1rem;
@@ -150,11 +165,21 @@ const TitleContainer = styled.div`
 
 const TodoContainer = styled.div`
   max-height: 36rem;
-  margin-top: 1rem;
-  padding: 0rem 1rem 1rem 1rem;
+  padding-right: 0.8rem;
   overflow-y: scroll;
-  background: #ffffff;
-  border-radius: 1rem;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    border-radius: 1rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.color_1};
+    border-radius: 1rem;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin: 1rem;
+    border-radius: 1rem;
+  }
 `;
 
 const SortSelect = styled.select`

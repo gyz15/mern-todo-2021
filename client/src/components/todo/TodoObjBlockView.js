@@ -15,7 +15,8 @@ const TodoObjBlockView = ({ data, done = true }) => {
   const editHandler = () => {
     history.push(`/todo/${data._id}`);
   };
-  const setDone = () => {
+  const setDone = (e) => {
+    e.stopPropagation();
     dispatch(updateTodo(data._id, { ...data, done: !data.done }));
   };
   const setDelete = () => {
@@ -24,7 +25,7 @@ const TodoObjBlockView = ({ data, done = true }) => {
   // TODO onclick function on icon
   // TODO ondouble click function on rest of div
   return (
-    <TodoDiv onDoubleClick={editHandler} done={done}>
+    <TodoDiv onClick={!done ? editHandler : () => {}} done={done}>
       <DoneIconSet done={done} setDone={setDone} />
       <DescriptionDiv done={done}>
         <Description>{data.description}</Description>
@@ -48,6 +49,7 @@ const Description = styled.h3`
 `;
 
 const TodoDiv = styled.div`
+  cursor: ${(props) => (props.done ? "not-allowed" : "pointer")};
   height: 4rem;
   display: flex;
   flex-direction: row;

@@ -51,8 +51,11 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Switch>
-          <PrivateRoute exact path="/todo/add" component={CreateTodo} />
-          <PrivateRoute exact path={["/", "/todo/:id"]} component={Home} />
+          <PrivateRoute
+            exact
+            path={["/", "/todo/add", "/todo/:id"]}
+            component={Home}
+          />
         </Switch>
       </ThemeProvider>
     </div>
