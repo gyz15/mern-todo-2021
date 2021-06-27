@@ -1,11 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import Input from "./Input";
+import CheckboxIcon from "../Icon/CheckboxIcon";
 
-const CheckboxInput = ({ ...attributes }) => {
+const CheckboxInput = ({ label, checked, disabled, onClickHandler, error }) => {
   return (
     <CheckboxStyled>
-      <Input {...attributes} />
+      <label>{label}</label>
+      <CheckboxIcon
+        checked={checked}
+        disabled={disabled}
+        onClickHandler={onClickHandler}
+      />
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </CheckboxStyled>
   );
 };
@@ -20,6 +26,11 @@ const CheckboxStyled = styled.div`
   input {
     margin-left: auto;
   }
+`;
+
+const ErrorMessage = styled.small`
+  color: ${(props) => props.theme.fontColorErr};
+  font-weight: 500;
 `;
 
 export default CheckboxInput;

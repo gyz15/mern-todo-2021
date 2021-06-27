@@ -1,4 +1,5 @@
 // TODO Sort function
+// TODO Logout, delete profile
 // Packages
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

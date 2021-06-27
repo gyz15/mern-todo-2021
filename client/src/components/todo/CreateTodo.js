@@ -1,7 +1,4 @@
 // TODO combine with update form
-// TODO extract error from redux state
-// TODO when user ticked isDaily disabled haveDueDate and vice versa
-// TODO Style checkbox & add todo form
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -14,7 +11,7 @@ import styled from "styled-components";
 
 const CreateTodo = () => {
   const [description, setDescription] = useState("");
-  const [haveDue, sethaveDue] = useState(false);
+  const [haveDue, setHaveDue] = useState(false);
   const [dueDate, setDue_date] = useState("");
   const [isDaily, setIs_Daily] = useState(false);
   const { errors } = useSelector((state) => state.errors);
@@ -42,6 +39,8 @@ const CreateTodo = () => {
       setDue_date("");
     }
   }, [haveDue]);
+
+  useEffect(() => {}, [isDaily, haveDue]);
 
   // Quit Handler for user clicking Card Shadow
   const quitPage = (e) => {
@@ -75,10 +74,10 @@ const CreateTodo = () => {
           </InputContainer>
           <InputContainer>
             <CheckboxInput
-              type="checkbox"
               checked={haveDue}
-              onChange={(e) => {
-                sethaveDue(!haveDue);
+              disabled={isDaily}
+              onClickHandler={(e) => {
+                setHaveDue(!haveDue);
               }}
               label="Have Due Date"
               error={errors.haveDue}
@@ -90,6 +89,7 @@ const CreateTodo = () => {
                 type="datetime-local"
                 value={dueDate}
                 onChange={(e) => {
+                  console.log(e.target.value);
                   setDue_date(e.target.value);
                 }}
                 label="Due Date"
@@ -99,16 +99,16 @@ const CreateTodo = () => {
           </InputContainer>
           <InputContainer>
             <CheckboxInput
-              type="checkbox"
               checked={isDaily}
-              onChange={(e) => {
+              disabled={haveDue}
+              onClickHandler={(e) => {
                 setIs_Daily(!isDaily);
               }}
               label="Is Dailly"
               error={errors.isDaily}
             />
           </InputContainer>
-          <button type="submit">Create</button>
+          <CreateButton type="submit">Create</CreateButton>
         </form>
       </CreateContainer>
     </CreatePage>
@@ -131,7 +131,7 @@ const CreatePage = styled.div`
 const CreateContainer = styled.div`
   min-width: 25rem;
   max-width: 30rem;
-  min-height: 30rem;
+  min-height: 20rem;
   max-height: 40rem;
   background-color: #edf7fe;
   padding: 2rem;
@@ -171,12 +171,23 @@ const InputContainer = styled.div`
       outline: none;
     }
   }
-  input[type="checkbox"] {
-    height: 1.5rem;
-    width: 1.5rem;
-    &::checked {
-      background: #ffffff;
-    }
+`;
+
+const CreateButton = styled.button`
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  display: inline-block;
+  border-radius: 0.5rem;
+  color: ${(props) => props.theme.fontColorLight};
+  width: auto;
+  position: left;
+  background: ${(props) => props.theme.actionLinear};
+  &:hover {
+    cursor: pointer;
   }
 `;
+
 export default CreateTodo;

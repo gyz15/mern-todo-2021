@@ -43,19 +43,21 @@ export const addTodo = (newTodoData, history) => (dispatch) => {
     });
 };
 // Update a todo
-export const updateTodo = (updateTodoId, updateTodoData) => (dispatch) => {
-  axios
-    .put(`/api/todo/${updateTodoId}`, updateTodoData)
-    .then((res) => {
-      dispatch({ type: CLEAR_ERRORS });
-      dispatch({ type: EDIT_TODO, payload: res.data });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({ type: SET_ERRORS, payload: err.response.data });
-      console.log(err.response.data);
-    });
-};
+export const updateTodo =
+  (updateTodoId, updateTodoData, history, redirectPath) => (dispatch) => {
+    axios
+      .put(`/api/todo/${updateTodoId}`, updateTodoData)
+      .then((res) => {
+        dispatch({ type: CLEAR_ERRORS });
+        dispatch({ type: EDIT_TODO, payload: res.data });
+        history.push(redirectPath);
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({ type: SET_ERRORS, payload: err.response.data });
+        console.log(err.response.data);
+      });
+  };
 // Delete a todo
 export const deleteTodo = (deleteTodoId) => (dispatch) => {
   axios
