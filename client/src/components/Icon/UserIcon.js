@@ -3,9 +3,9 @@ import user from "../../images/user.svg";
 
 import styled from "styled-components";
 
-const UserIcon = ({ size = 5 }) => {
+const UserIcon = ({ size = 5, onClickHandler }) => {
   return (
-    <IconDiv>
+    <IconDiv onClick={onClickHandler}>
       <img
         src={user}
         alt="User"
@@ -17,6 +17,7 @@ const UserIcon = ({ size = 5 }) => {
 
 const IconDiv = styled.div`
   display: inline-block;
+  cursor: pointer;
 `;
 
 export default UserIcon;

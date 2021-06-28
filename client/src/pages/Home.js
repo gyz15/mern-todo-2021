@@ -1,5 +1,3 @@
-// TODO Sort function
-// TODO Logout, delete profile
 // Packages
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +18,7 @@ import { getUserTodos, sortTodo } from "../actions/todoActions";
 // Styling
 import styled from "styled-components";
 import CreateTodo from "../components/todo/CreateTodo";
+import Profile from "./Profile";
 
 const Home = () => {
   const { todos, loading } = useSelector((state) => state.todo);
@@ -27,6 +26,7 @@ const Home = () => {
   const [ascending, setAscending] = useState(true);
   const dispatch = useDispatch();
   const location = useLocation();
+  const profileOrTodo = location.pathname.split("/")[1];
   const pathId = location.pathname.split("/")[2];
   const history = useHistory();
 
@@ -38,6 +38,9 @@ const Home = () => {
   };
   const handleCreateTodo = () => {
     history.push("/todo/add");
+  };
+  const handleProfile = () => {
+    history.push("/profile");
   };
 
   const handleSort = () => {
@@ -51,17 +54,16 @@ const Home = () => {
 
   const onSortByChange = (e) => {
     setSortBy(e.target.value);
-    dispatch(sortTodo(sortBy, ascending));
   };
   useEffect(() => {
     dispatch(sortTodo(sortBy, ascending));
-  }, [ascending]);
+  }, [ascending, sortBy]);
 
   return (
     <HomePage>
       <HomeContainer>
         <TitleContainer>
-          <UserIcon size={2.5} />
+          <UserIcon size={2.5} onClickHandler={handleProfile} />
           <HomeTitle>Tasks</HomeTitle>
           <SortDiv>
             <SortBy>Sort by:</SortBy>
@@ -78,17 +80,22 @@ const Home = () => {
             />
           </SortDiv>
         </TitleContainer>
-        {!loading && pathId ? (
-          pathId === "add" ? (
-            <CreateTodo />
+        {!loading && profileOrTodo ? (
+          profileOrTodo === "profile" ? (
+            <Profile />
+          ) : profileOrTodo === "todo" ? (
+            pathId === "add" ? (
+              <CreateTodo sortBy={sortBy} ascending={ascending} />
+            ) : (
+              <TodoDetail todos={todos} pathId={pathId} />
+            )
           ) : (
-            <TodoDetail todos={todos} pathId={pathId} />
+            ""
           )
         ) : (
           ""
         )}
-        <button onClick={handleLogout}>Logout</button>
-        <button onClick={handleDelete}>Delete This Account</button>
+
         <TodoBackground>
           <TodoContainer>
             {!loading ? (

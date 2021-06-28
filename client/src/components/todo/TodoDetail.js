@@ -40,7 +40,6 @@ const TodoDetail = ({ todos, pathId }) => {
     );
     setIsDaily(todoObj.isDaily);
     setDone(todoObj.done);
-    console.log(dueDate);
   };
 
   const userCloseEditWindowHandler = () => {

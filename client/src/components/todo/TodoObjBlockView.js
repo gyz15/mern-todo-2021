@@ -17,9 +17,10 @@ const TodoObjBlockView = ({ data, done = true }) => {
   };
   const setDone = (e) => {
     e.stopPropagation();
-    dispatch(updateTodo(data._id, { ...data, done: !data.done }));
+    dispatch(updateTodo(data._id, { ...data, done: !data.done }, history, "/"));
   };
-  const setDelete = () => {
+  const setDelete = (e) => {
+    e.stopPropagation();
     dispatch(deleteTodo(data._id));
   };
   // TODO onclick function on icon

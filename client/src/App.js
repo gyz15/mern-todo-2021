@@ -53,7 +53,7 @@ function App() {
         <Switch>
           <PrivateRoute
             exact
-            path={["/", "/todo/add", "/todo/:id"]}
+            path={["/", "/todo/add", "/todo/:id", "/profile"]}
             component={Home}
           />
         </Switch>

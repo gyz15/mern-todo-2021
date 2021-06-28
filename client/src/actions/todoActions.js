@@ -24,24 +24,25 @@ export const getUserTodos = () => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: SET_ERRORS, payload: err.response.data });
-      console.log(err.response.data);
+      // console.log(err.response.data);
     });
 };
 // Add a todo
-export const addTodo = (newTodoData, history) => (dispatch) => {
-  axios
-    .post("/api/todo/add", newTodoData)
-    .then((res) => {
-      console.log(res.data);
-      dispatch({ type: CLEAR_ERRORS });
-      dispatch({ type: ADD_TODO, payload: res.data });
-      history.push("/");
-    })
-    .catch((err) => {
-      dispatch({ type: SET_ERRORS, payload: err.response.data });
-      console.log(err.response.data);
-    });
-};
+export const addTodo =
+  (newTodoData, history, sortBy, ascending) => (dispatch) => {
+    axios
+      .post("/api/todo/add", newTodoData)
+      .then((res) => {
+        // console.log(res.data);
+        dispatch({ type: CLEAR_ERRORS });
+        dispatch({ type: ADD_TODO, payload: res.data });
+        dispatch(sortTodo(sortBy, ascending));
+        history.push("/");
+      })
+      .catch((err) => {
+        dispatch({ type: SET_ERRORS, payload: err.response.data });
+      });
+  };
 // Update a todo
 export const updateTodo =
   (updateTodoId, updateTodoData, history, redirectPath) => (dispatch) => {
@@ -53,9 +54,7 @@ export const updateTodo =
         history.push(redirectPath);
       })
       .catch((err) => {
-        console.log(err);
         dispatch({ type: SET_ERRORS, payload: err.response.data });
-        console.log(err.response.data);
       });
   };
 // Delete a todo
@@ -63,12 +62,11 @@ export const deleteTodo = (deleteTodoId) => (dispatch) => {
   axios
     .delete(`/api/todo/${deleteTodoId}`)
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       dispatch({ type: CLEAR_ERRORS });
       dispatch({ type: DELETE_TODO, payload: res.data._doc });
     })
     .catch((err) => {
-      console.log(err);
       dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };

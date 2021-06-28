@@ -2,14 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addTodo } from "../../actions/todoActions";
+import { addTodo, sortTodo } from "../../actions/todoActions";
 import Input from "../common/Input";
 import CheckboxInput from "../common/CheckboxInput";
 import Cross from "../Icon/Cross";
 
 import styled from "styled-components";
 
-const CreateTodo = () => {
+const CreateTodo = ({ sortBy, ascending }) => {
   const [description, setDescription] = useState("");
   const [haveDue, setHaveDue] = useState(false);
   const [dueDate, setDue_date] = useState("");
@@ -31,7 +31,7 @@ const CreateTodo = () => {
       dueDate: dueDate,
       isDaily: isDaily,
     };
-    dispatch(addTodo(createData, history));
+    dispatch(addTodo(createData, history, sortBy, ascending));
   };
 
   useEffect(() => {
@@ -89,7 +89,6 @@ const CreateTodo = () => {
                 type="datetime-local"
                 value={dueDate}
                 onChange={(e) => {
-                  console.log(e.target.value);
                   setDue_date(e.target.value);
                 }}
                 label="Due Date"
