@@ -14,7 +14,6 @@ import setOrDeleteAuthHeader from "./utils/setOrDeleteAuthHeader";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import CreateTodo from "./components/todo/CreateTodo";
 
 // Actions
 import { setUser, logoutUser } from "./actions/authActions";

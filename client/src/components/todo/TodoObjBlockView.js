@@ -23,15 +23,14 @@ const TodoObjBlockView = ({ data, done = true }) => {
     e.stopPropagation();
     dispatch(deleteTodo(data._id));
   };
-  // TODO onclick function on icon
-  // TODO ondouble click function on rest of div
+
   return (
     <TodoDiv onClick={!done ? editHandler : () => {}} done={done}>
       <DoneIconSet done={done} setDone={setDone} />
       <DescriptionDiv done={done}>
         <Description>{data.description}</Description>
         {data.dueDate ? (
-          <DueDate>
+          <DueDate date={data.dueDate} done={done}>
             Due Date: <Moment format="D/M/YY, h:mm a">{data.dueDate}</Moment>
           </DueDate>
         ) : (
@@ -81,6 +80,10 @@ const DescriptionDiv = styled.div`
 
 const DueDate = styled.h5`
   margin: 0rem;
+  ${(props) =>
+    Date.parse(props.date) <= Date.now() && !props.done
+      ? `time{color:${props.theme.fontColorErr}};`
+      : ""}
 `;
 
 export default TodoObjBlockView;

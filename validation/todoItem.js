@@ -21,9 +21,6 @@ module.exports = function validateTodoInput(data) {
     // dueDate should be specified if and only if haveDue is true
     if (Validator.isEmpty(data.dueDate)) {
       errors.dueDate = "Please add a due date";
-    } else if (Date.parse(data.dueDate) <= Date.now()) {
-      // dueDate must be greater than date.now
-      errors.dueDate = "Due date cannot earlier than now";
     }
     if (data.isDaily === "true") {
       errors.isDaily = "Daily tasks cannot have due date";

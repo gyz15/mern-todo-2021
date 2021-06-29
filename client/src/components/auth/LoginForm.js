@@ -12,7 +12,7 @@ import Input from "../common/Input";
 import { loginUser } from "../../actions/authActions";
 
 // Styles
-import styled from "styled-components";
+import { FormButton, InputContainer } from "../style/Components";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -49,45 +49,9 @@ const LoginForm = () => {
         />
       </InputContainer>
 
-      <LoginButton type="sumbit">Let's Go</LoginButton>
+      <FormButton type="sumbit">Let's Go</FormButton>
     </form>
   );
 };
-
-const InputContainer = styled.div`
-  margin: 0.5rem 0.8rem 0rem 0rem;
-  label {
-    display: block;
-    padding-bottom: 0.2rem;
-  }
-  input {
-    width: 80%;
-    border: none;
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    &:focus {
-      border: none;
-      outline: none;
-    }
-  }
-`;
-
-const LoginButton = styled.button`
-  margin-top: 1rem;
-  outline: none;
-  border: none;
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  display: inline-block;
-  border-radius: 0.5rem;
-  color: ${(props) => props.theme.fontColorLight};
-  width: auto;
-  position: left;
-  background: ${(props) => props.theme.actionLinear};
-  &:hover {
-    cursor: pointer;
-  }
-`;
 
 export default LoginForm;

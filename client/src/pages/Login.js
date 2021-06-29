@@ -28,6 +28,7 @@ const Login = () => {
     if (isAuthenticated) {
       history.push(loginRedirectUrl);
     }
+    // eslint-disable-next-line
   }, [isAuthenticated]);
   return (
     <LoginPage>

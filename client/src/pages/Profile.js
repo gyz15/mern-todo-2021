@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { logoutUser, deleteUser } from "../actions/authActions";
+import { PageBackground, Taskbar } from "../components/style/Components";
 const Profile = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Profile = () => {
     history.push("/");
   };
   return (
-    <ProfilePage className="profile" onClick={quitPage}>
+    <PageBackground className="profile" onClick={quitPage}>
       <ProfileContainer>
         <Taskbar>
           <h2>Profile</h2>
@@ -34,24 +35,11 @@ const Profile = () => {
           Delete this Account
         </ProfileButton>
       </ProfileContainer>
-    </ProfilePage>
+    </PageBackground>
   );
 };
 
 export default Profile;
-
-const ProfilePage = styled.div`
-  position: fixed;
-  width: 100%;
-  min-height: 100vh;
-  overflow-y: scroll;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
 
 const ProfileContainer = styled.div`
   min-width: 15rem;
@@ -62,16 +50,6 @@ const ProfileContainer = styled.div`
   padding: 2rem;
   border-radius: 1rem;
 `;
-const Taskbar = styled.div`
-  width: 100%;
-  display: flex;
-  h2 {
-    font-size: 2rem;
-    padding: 0rem;
-    font-weight: 550;
-  }
-`;
-
 const ProfileButton = styled.button`
   margin-top: 1rem;
   outline: none;

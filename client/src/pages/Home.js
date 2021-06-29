@@ -12,7 +12,6 @@ import SortIcon from "../components/Icon/SortIcon";
 import AddTodoBlock from "../components/todo/AddTodoBlock";
 
 // Actions
-import { logoutUser, deleteUser } from "../actions/authActions";
 import { getUserTodos, sortTodo } from "../actions/todoActions";
 
 // Styling
@@ -30,12 +29,6 @@ const Home = () => {
   const pathId = location.pathname.split("/")[2];
   const history = useHistory();
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
-  };
-  const handleDelete = () => {
-    dispatch(deleteUser());
-  };
   const handleCreateTodo = () => {
     history.push("/todo/add");
   };
@@ -50,6 +43,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getUserTodos());
     dispatch(sortTodo(sortBy, ascending));
+    // eslint-disable-next-line
   }, []);
 
   const onSortByChange = (e) => {
@@ -57,6 +51,7 @@ const Home = () => {
   };
   useEffect(() => {
     dispatch(sortTodo(sortBy, ascending));
+    // eslint-disable-next-line
   }, [ascending, sortBy]);
 
   return (
