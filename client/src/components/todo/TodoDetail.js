@@ -14,6 +14,7 @@ import {
   Taskbar,
   FormButton,
 } from "../style/Components";
+import { ButtonZoom } from "../animations/variant";
 
 const TodoDetail = ({ todos, pathId }) => {
   const history = useHistory();
@@ -129,7 +130,14 @@ const TodoDetail = ({ todos, pathId }) => {
               error={errors.isDaily}
             />
           </InputContainer>
-          <FormButton type="submit">Update</FormButton>
+          <FormButton
+            variants={ButtonZoom}
+            whileHover="focused"
+            whileFocus="focused"
+            type="submit"
+          >
+            Update
+          </FormButton>
         </form>
       </CreateEditContainer>
     </PageBackground>

@@ -1,10 +1,6 @@
-// TODO Split into component
-// TODO Themed colour which has config
-// TODO styling according to figma
-// TODO do not have an account, register here
 // Packages
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation, Link } from "react-router-dom";
 
 // Components
@@ -18,6 +14,7 @@ const Login = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const loginRedirectUrl =
     location.state && location.state.loginRedirectUrl !== null
@@ -30,6 +27,10 @@ const Login = () => {
     }
     // eslint-disable-next-line
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    dispatch({ type: "CLEAR_ERRORS" });
+  }, []);
   return (
     <LoginPage>
       <MainContainer>

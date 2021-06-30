@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { logoutUser, deleteUser } from "../actions/authActions";
 import { PageBackground, Taskbar } from "../components/style/Components";
+import { motion } from "framer-motion";
+import { ButtonZoom } from "../components/animations/variant";
+
 const Profile = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -30,8 +33,21 @@ const Profile = () => {
           <h2>Profile</h2>
           <Cross onClickHandler={quitHandler} right={true} />
         </Taskbar>
-        <ProfileButton onClick={handleLogout}>Logout</ProfileButton>
-        <ProfileButton danger onClick={handleDelete}>
+        <ProfileButton
+          variants={ButtonZoom}
+          whileHover="focused"
+          whileFocus="focused"
+          onClick={handleLogout}
+        >
+          Logout
+        </ProfileButton>
+        <ProfileButton
+          variants={ButtonZoom}
+          whileHover="focused"
+          whileFocus="focused"
+          danger
+          onClick={handleDelete}
+        >
           Delete this Account
         </ProfileButton>
       </ProfileContainer>
@@ -50,7 +66,7 @@ const ProfileContainer = styled.div`
   padding: 2rem;
   border-radius: 1rem;
 `;
-const ProfileButton = styled.button`
+const ProfileButton = styled(motion.button)`
   margin-top: 1rem;
   outline: none;
   border: none;

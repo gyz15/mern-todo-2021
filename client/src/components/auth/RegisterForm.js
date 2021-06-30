@@ -11,6 +11,9 @@ import Input from "../common/Input";
 // Styling
 import { FormButton, InputContainer } from "../style/Components";
 
+// Animation
+import { ButtonZoom } from "../animations/variant";
+
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -57,7 +60,14 @@ const RegisterForm = () => {
           error={errors.password2}
         />
       </InputContainer>
-      <FormButton type="sumbit">Register</FormButton>
+      <FormButton
+        variants={ButtonZoom}
+        whileHover="focused"
+        whileFocus="focused"
+        type="sumbit"
+      >
+        Register
+      </FormButton>
     </form>
   );
 };

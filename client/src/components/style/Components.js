@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const FormButton = styled.button`
+export const FormButton = styled(motion.button)`
   margin-top: 1rem;
   outline: none;
   border: none;

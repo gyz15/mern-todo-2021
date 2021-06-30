@@ -14,6 +14,9 @@ import { loginUser } from "../../actions/authActions";
 // Styles
 import { FormButton, InputContainer } from "../style/Components";
 
+// Animation
+import { ButtonZoom } from "../animations/variant";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -49,7 +52,14 @@ const LoginForm = () => {
         />
       </InputContainer>
 
-      <FormButton type="sumbit">Let's Go</FormButton>
+      <FormButton
+        variants={ButtonZoom}
+        whileHover="focused"
+        whileFocus="focused"
+        type="sumbit"
+      >
+        Let's Go
+      </FormButton>
     </form>
   );
 };

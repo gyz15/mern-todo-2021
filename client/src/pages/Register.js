@@ -1,6 +1,6 @@
 // Packages
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,11 +10,15 @@ import RegisterForm from "../components/auth/RegisterForm";
 const Register = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const history = useHistory();
+  const dispatch = useDispatch();
   useEffect(() => {
     if (isAuthenticated) {
       history.push("/");
     }
   }, [isAuthenticated, history]);
+  useEffect(() => {
+    dispatch({ type: "CLEAR_ERRORS" });
+  }, []);
   return (
     <RegisterPage>
       <RegisterContainer>

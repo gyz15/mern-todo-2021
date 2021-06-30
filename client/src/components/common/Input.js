@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { ErrorPopUp } from "../animations/variant";
 
 const Input = ({
   type = "text",
@@ -18,12 +20,16 @@ const Input = ({
         placeholder={placeholder}
         onChange={onChange}
       ></StyledInput>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {error && (
+        <ErrorMessage initial="hidden" variants={ErrorPopUp} animate="enter">
+          {error}
+        </ErrorMessage>
+      )}
     </>
   );
 };
 
-const ErrorMessage = styled.small`
+const ErrorMessage = styled(motion.small)`
   color: ${(props) => props.theme.fontColorErr};
   font-weight: 500;
 `;
