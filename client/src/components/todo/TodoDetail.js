@@ -14,7 +14,7 @@ import {
   Taskbar,
   FormButton,
 } from "../style/Components";
-import { ButtonZoom } from "../animations/variant";
+import { ObjectZoom } from "../animations/variant";
 
 const TodoDetail = ({ todos, pathId }) => {
   const history = useHistory();
@@ -131,7 +131,7 @@ const TodoDetail = ({ todos, pathId }) => {
             />
           </InputContainer>
           <FormButton
-            variants={ButtonZoom}
+            variants={ObjectZoom}
             whileHover="focused"
             whileFocus="focused"
             type="submit"

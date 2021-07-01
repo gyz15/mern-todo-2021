@@ -37,7 +37,8 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const PageBackground = styled.div`
+export const PageBackground = styled(motion.div)`
+  z-index: 2;
   position: fixed;
   width: 100%;
   min-height: 100vh;
@@ -50,7 +51,9 @@ export const PageBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const CreateEditContainer = styled.div`
+// Motion here enter
+export const CreateEditContainer = styled(motion.div)`
+  z-index: 3;
   min-width: 25rem;
   max-width: 30rem;
   min-height: 20rem;

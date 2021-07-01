@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import AddIcon from "../Icon/AddIcon";
+import { motion } from "framer-motion";
+import { ObjectUp } from "../animations/variant";
 
 const AddTodoBlock = ({ handleOnClick }) => {
   const [divOnHover, setDivOnHover] = useState(false);
@@ -8,6 +10,10 @@ const AddTodoBlock = ({ handleOnClick }) => {
   return (
     <>
       <AddTodoDiv
+        variants={ObjectUp}
+        whileHover="focused"
+        initial="initial"
+        whileTap="pressed"
         onClick={handleOnClick}
         divOnHover={divOnHover}
         onMouseEnter={() => setDivOnHover(true)}
@@ -21,7 +27,7 @@ const AddTodoBlock = ({ handleOnClick }) => {
   );
 };
 
-const AddTodoDiv = styled.div`
+const AddTodoDiv = styled(motion.div)`
   height: 4rem;
   display: flex;
   flex-direction: row;

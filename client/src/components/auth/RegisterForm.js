@@ -12,7 +12,7 @@ import Input from "../common/Input";
 import { FormButton, InputContainer } from "../style/Components";
 
 // Animation
-import { ButtonZoom } from "../animations/variant";
+import { ObjectZoom } from "../animations/variant";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -61,9 +61,10 @@ const RegisterForm = () => {
         />
       </InputContainer>
       <FormButton
-        variants={ButtonZoom}
+        variants={ObjectZoom}
         whileHover="focused"
         whileFocus="focused"
+        whileTap="pressed"
         type="sumbit"
       >
         Register

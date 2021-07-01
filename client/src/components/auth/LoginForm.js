@@ -15,7 +15,7 @@ import { loginUser } from "../../actions/authActions";
 import { FormButton, InputContainer } from "../style/Components";
 
 // Animation
-import { ButtonZoom } from "../animations/variant";
+import { ObjectZoom } from "../animations/variant";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -53,9 +53,10 @@ const LoginForm = () => {
       </InputContainer>
 
       <FormButton
-        variants={ButtonZoom}
+        variants={ObjectZoom}
         whileHover="focused"
         whileFocus="focused"
+        whileTap="pressed"
         type="sumbit"
       >
         Let's Go

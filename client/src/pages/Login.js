@@ -30,6 +30,7 @@ const Login = () => {
 
   useEffect(() => {
     dispatch({ type: "CLEAR_ERRORS" });
+    // eslint-disable-next-line
   }, []);
   return (
     <LoginPage>

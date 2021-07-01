@@ -170,6 +170,7 @@ const TodoContainer = styled.div`
   max-height: 36rem;
   padding-right: 0.8rem;
   overflow-y: scroll;
+  overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 0.5rem;
     border-radius: 1rem;
@@ -238,4 +239,5 @@ const SelectDiv = styled.div`
     grid-area: select;
   }
 `;
+
 export default Home;

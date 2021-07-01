@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { logoutUser, deleteUser } from "../actions/authActions";
 import { PageBackground, Taskbar } from "../components/style/Components";
 import { motion } from "framer-motion";
-import { ButtonZoom } from "../components/animations/variant";
+import { ObjectZoom } from "../components/animations/variant";
 
 const Profile = () => {
   const history = useHistory();
@@ -34,17 +34,19 @@ const Profile = () => {
           <Cross onClickHandler={quitHandler} right={true} />
         </Taskbar>
         <ProfileButton
-          variants={ButtonZoom}
+          variants={ObjectZoom}
           whileHover="focused"
           whileFocus="focused"
+          whileTap="pressed"
           onClick={handleLogout}
         >
           Logout
         </ProfileButton>
         <ProfileButton
-          variants={ButtonZoom}
+          variants={ObjectZoom}
           whileHover="focused"
           whileFocus="focused"
+          whileTap="pressed"
           danger
           onClick={handleDelete}
         >

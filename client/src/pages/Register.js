@@ -18,6 +18,7 @@ const Register = () => {
   }, [isAuthenticated, history]);
   useEffect(() => {
     dispatch({ type: "CLEAR_ERRORS" });
+    // eslint-disable-next-line
   }, []);
   return (
     <RegisterPage>

@@ -15,6 +15,7 @@ import {
   CreateEditContainer,
   Taskbar,
 } from "../style/Components";
+import { ObjectZoom } from "../animations/variant";
 
 const CreateTodo = ({ sortBy, ascending }) => {
   const [description, setDescription] = useState("");
@@ -114,7 +115,14 @@ const CreateTodo = ({ sortBy, ascending }) => {
               error={errors.isDaily}
             />
           </InputContainer>
-          <FormButton type="submit">Create</FormButton>
+          <FormButton
+            variants={ObjectZoom}
+            whileHover="focused"
+            whileFocus="focused"
+            type="submit"
+          >
+            Create
+          </FormButton>
         </form>
       </CreateEditContainer>
     </PageBackground>
