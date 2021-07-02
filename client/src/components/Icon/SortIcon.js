@@ -3,10 +3,15 @@ import sort_icon_on from "../../images/sort_icon_on.svg";
 import sort_icon_off from "../../images/sort_icon_off.svg";
 
 import styled from "styled-components";
+import AppTheme from "../style/Theme";
 import { motion } from "framer-motion";
 import { ObjectZoom } from "../animations/variant";
 
-const SortIcon = ({ size = 1, active = false, onClickHandler }) => {
+const SortIcon = ({
+  size = AppTheme.iconSizeLarge,
+  active = false,
+  onClickHandler,
+}) => {
   return (
     <SortIconDiv
       variants={ObjectZoom}

@@ -36,7 +36,6 @@ const Profile = () => {
         <ProfileButton
           variants={ObjectZoom}
           whileHover="focused"
-          whileFocus="focused"
           whileTap="pressed"
           onClick={handleLogout}
         >
@@ -45,9 +44,8 @@ const Profile = () => {
         <ProfileButton
           variants={ObjectZoom}
           whileHover="focused"
-          whileFocus="focused"
           whileTap="pressed"
-          danger
+          danger={true}
           onClick={handleDelete}
         >
           Delete this Account
@@ -59,7 +57,7 @@ const Profile = () => {
 
 export default Profile;
 
-const ProfileContainer = styled.div`
+const ProfileContainer = styled(motion.div)`
   min-width: 15rem;
   max-width: 30rem;
   min-height: 10rem;
@@ -73,14 +71,12 @@ const ProfileButton = styled(motion.button)`
   outline: none;
   border: none;
   padding: 0.5rem;
-  font-size: 1.2rem;
+  font-size: ${(props) => `${props.theme.fontSizeLight}rem`};
   display: block;
   border-radius: 0.5rem;
   color: ${(props) => props.theme.fontColorLight};
   width: auto;
   position: left;
   background: ${(props) => (props.danger ? "red" : props.theme.actionLinear)};
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;

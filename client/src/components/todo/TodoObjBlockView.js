@@ -8,6 +8,11 @@ import Moment from "react-moment";
 
 // Styling
 import styled from "styled-components";
+import AppTheme from "../style/Theme";
+
+// Animation
+import { motion } from "framer-motion";
+import { TodoObjZoom } from "../animations/variant";
 
 const TodoObjBlockView = ({ data, done = true }) => {
   const history = useHistory();
@@ -25,7 +30,12 @@ const TodoObjBlockView = ({ data, done = true }) => {
   };
 
   return (
-    <TodoDiv onClick={!done ? editHandler : () => {}} done={done}>
+    <TodoDiv
+      variants={TodoObjZoom}
+      whileHover="focused"
+      onClick={!done ? editHandler : () => {}}
+      done={done}
+    >
       <DoneIconSet done={done} setDone={setDone} />
       <DescriptionDiv done={done}>
         <Description>{data.description}</Description>
@@ -46,15 +56,16 @@ const TodoObjBlockView = ({ data, done = true }) => {
 
 const Description = styled.h3`
   padding: 0rem;
+  font-size: ${(props) => `${props.theme.fontSizeLight}rem`};
 `;
 
-const TodoDiv = styled.div`
+const TodoDiv = styled(motion.div)`
   cursor: ${(props) => (props.done ? "not-allowed" : "pointer")};
   height: 4rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0rem 1.5rem;
+  padding: 0rem 1.2rem;
   background: ${(props) =>
     props.done ? props.theme.color_4 : props.theme.color_2};
   margin: 1rem 0rem;
@@ -80,6 +91,7 @@ const DescriptionDiv = styled.div`
 
 const DueDate = styled.h5`
   margin: 0rem;
+  font-size: ${(props) => `${props.theme.fontSizeSmall}rem`};
   ${(props) =>
     Date.parse(props.date) <= Date.now() && !props.done
       ? `time{color:${props.theme.fontColorErr}};`

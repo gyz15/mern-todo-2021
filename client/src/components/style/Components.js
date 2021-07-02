@@ -6,28 +6,28 @@ export const FormButton = styled(motion.button)`
   outline: none;
   border: none;
   padding: 0.5rem;
-  font-size: 1.2rem;
-  display: inline-block;
+  font-size: ${(props) => `${props.theme.fontSizeLight}rem`};
+  display: block;
   border-radius: 0.5rem;
   color: ${(props) => props.theme.fontColorLight};
   width: auto;
   position: left;
   background: ${(props) => props.theme.actionLinear};
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
-export const InputContainer = styled.div`
+export const InputContainer = styled(motion.div)`
   margin: 0.5rem 0.8rem 0rem 0rem;
   label {
     display: block;
     padding-bottom: 0.2rem;
+    font-weight: ${(props) => `${props.theme.fontWeightLight}`};
+    font-size: ${(props) => `${props.theme.fontSizeLight}rem`};
   }
   input {
     width: 80%;
     border: none;
-    font-size: 1.2rem;
+    font-size: ${(props) => `${props.theme.fontSizeLight}rem`};
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     &:focus {

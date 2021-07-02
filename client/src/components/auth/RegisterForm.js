@@ -63,7 +63,6 @@ const RegisterForm = () => {
       <FormButton
         variants={ObjectZoom}
         whileHover="focused"
-        whileFocus="focused"
         whileTap="pressed"
         type="sumbit"
       >

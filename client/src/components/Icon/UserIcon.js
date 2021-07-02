@@ -2,8 +2,9 @@ import React from "react";
 import user from "../../images/user.svg";
 
 import styled from "styled-components";
+import AppTheme from "../style/Theme";
 
-const UserIcon = ({ size = 5, onClickHandler }) => {
+const UserIcon = ({ size = AppTheme.iconSizeLarge, onClickHandler }) => {
   return (
     <IconDiv onClick={onClickHandler}>
       <img

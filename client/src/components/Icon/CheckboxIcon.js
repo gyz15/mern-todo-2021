@@ -3,8 +3,14 @@ import styled from "styled-components";
 import checkbox_blank from "../../images/checkbox_blank.svg";
 import checkbox_disabled from "../../images/checkbox_disabled.svg";
 import checkbox_checked from "../../images/checkbox_checked.svg";
+import AppTheme from "../style/Theme";
 
-const CheckboxIcon = ({ checked, disabled, onClickHandler }) => {
+const CheckboxIcon = ({
+  size = AppTheme.iconSize,
+  checked,
+  disabled,
+  onClickHandler,
+}) => {
   const [icon, setIcon] = useState(checkbox_blank);
   useEffect(() => {
     if (disabled) {
@@ -20,7 +26,7 @@ const CheckboxIcon = ({ checked, disabled, onClickHandler }) => {
       <img
         src={icon}
         alt="Cancel"
-        style={{ width: "1.5rem", margin: "auto", display: "block" }}
+        style={{ width: `${size}rem`, margin: "auto", display: "block" }}
       />
     </IconDiv>
   );

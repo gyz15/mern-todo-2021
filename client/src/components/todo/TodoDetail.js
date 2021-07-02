@@ -97,6 +97,7 @@ const TodoDetail = ({ todos, pathId }) => {
           </InputContainer>
           <InputContainer>
             <CheckboxInput
+              size={2}
               checked={haveDue}
               disabled={isDaily}
               onClickHandler={(e) => {
@@ -109,6 +110,7 @@ const TodoDetail = ({ todos, pathId }) => {
           <InputContainer>
             <DateDiv haveDue={haveDue}>
               <Input
+                size={2}
                 type="datetime-local"
                 value={dueDate}
                 onChange={(e) => {

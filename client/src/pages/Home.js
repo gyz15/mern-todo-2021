@@ -58,7 +58,7 @@ const Home = () => {
     <HomePage>
       <HomeContainer>
         <TitleContainer>
-          <UserIcon size={2.5} onClickHandler={handleProfile} />
+          <UserIcon onClickHandler={handleProfile} />
           <HomeTitle>Tasks</HomeTitle>
           <SortDiv>
             <SortBy>Sort by:</SortBy>
@@ -68,11 +68,7 @@ const Home = () => {
                 <option value="createdAt">Created At</option>
               </SortSelect>
             </SelectDiv>
-            <SortIcon
-              size={2.5}
-              active={ascending}
-              onClickHandler={handleSort}
-            />
+            <SortIcon active={ascending} onClickHandler={handleSort} />
           </SortDiv>
         </TitleContainer>
         {!loading && profileOrTodo ? (
@@ -157,6 +153,8 @@ const TodoBackground = styled.div`
   padding: 0rem 1rem 1rem 1rem;
 `;
 const HomeTitle = styled.h1`
+  font-weight: ${(props) => `${props.theme.fontWeightBold}`};
+  font-size: ${(props) => `${props.theme.fontSizeBold}rem`};
   display: inline-block;
   margin: 1rem;
 `;
@@ -199,6 +197,8 @@ const SortSelect = styled.select`
   grid-template-areas: "select";
   background: transparent;
   cursor: pointer;
+  font-weight: ${(props) => `${props.theme.fontWeightMedium}`};
+  font-size: ${(props) => `${props.theme.fontSizeLight}rem`};
   z-index: 1;
 `;
 const SortDiv = styled.div`
@@ -209,12 +209,13 @@ const SortDiv = styled.div`
 
 const SortBy = styled.p`
   margin: 0rem 1rem;
-  font-weight: 500;
+  font-weight: ${(props) => `${props.theme.fontWeightMedium}`};
+  font-size: ${(props) => `${props.theme.fontSizeMedium}rem`};
   width: fill-available;
 `;
 const SelectDiv = styled.div`
   width: 100%;
-  min-width: 10rem;
+  min-width: 12rem;
   max-width: 15rem;
   border-radius: 0.25em;
   padding: 0.25em 0.5em;

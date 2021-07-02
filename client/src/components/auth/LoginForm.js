@@ -15,6 +15,7 @@ import { loginUser } from "../../actions/authActions";
 import { FormButton, InputContainer } from "../style/Components";
 
 // Animation
+import { motion } from "framer-motion";
 import { ObjectZoom } from "../animations/variant";
 
 const LoginForm = () => {
@@ -33,7 +34,7 @@ const LoginForm = () => {
     dispatch(loginUser(loginData, history));
   };
   return (
-    <form onSubmit={(e) => loginHandler(e)}>
+    <motion.form onSubmit={(e) => loginHandler(e)}>
       <InputContainer>
         <Input
           label="Username"
@@ -51,17 +52,15 @@ const LoginForm = () => {
           error={errors.password}
         />
       </InputContainer>
-
       <FormButton
         variants={ObjectZoom}
         whileHover="focused"
-        whileFocus="focused"
         whileTap="pressed"
-        type="sumbit"
+        onClick={() => loginHandler}
       >
         Let's Go
       </FormButton>
-    </form>
+    </motion.form>
   );
 };
 

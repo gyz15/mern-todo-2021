@@ -1,21 +1,32 @@
 import React from "react";
 import done_icon from "../../images/done_icon.svg";
-import not_done_icon from "../../images/not_done_icon.svg";
 import styled from "styled-components";
+import AnimatedNotDoneIcon from "./AnimatedNotDoneIcon";
+import { motion } from "framer-motion";
+import { ObjectZoom } from "../animations/variant";
 
 const DoneIconSet = ({ done, setDone }) => {
   return (
-    <IconDiv onClick={setDone}>
-      <img
-        src={done ? done_icon : not_done_icon}
-        alt="Cancel"
-        style={{ width: "2rem", margin: "auto", display: "block" }}
-      />
+    <IconDiv
+      variants={ObjectZoom}
+      whileTap="pressed"
+      whileHover="focused"
+      onClick={setDone}
+    >
+      {done ? (
+        <img
+          src={done_icon}
+          alt="Cancel"
+          style={{ width: "2rem", margin: "auto", display: "block" }}
+        />
+      ) : (
+        <AnimatedNotDoneIcon />
+      )}
     </IconDiv>
   );
 };
 
-const IconDiv = styled.div`
+const IconDiv = styled(motion.div)`
   cursor: pointer;
 `;
 

@@ -50,6 +50,7 @@ const Line = styled.div`
 const Description = styled.h3`
   margin: 1.5rem;
   color: #676767;
-  font-weight: 500;
+  font-weight: ${(props) => `${props.theme.fontWeightMedium}`};
+  font-size: ${(props) => `${props.theme.fontSizeMedium}rem`};
 `;
 export default AddTodoBlock;

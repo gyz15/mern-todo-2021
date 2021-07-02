@@ -10,6 +10,9 @@ import Logo from "../components/Icon/Logo";
 // Styling
 import styled from "styled-components";
 
+// Animation
+import { motion } from "framer-motion";
+
 const Login = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const history = useHistory();
@@ -46,12 +49,10 @@ const Login = () => {
         </InfoContainer>
         <LoginContainer>
           <h1>Login</h1>
-          <LoginFormContainer>
-            <LoginForm />
-            <Link to="/register">
-              Do not have an account? Click here to register &#8599;
-            </Link>
-          </LoginFormContainer>
+          <LoginForm />
+          <Link to="/register">
+            Do not have an account? Click here to register &#8599;
+          </Link>
         </LoginContainer>
       </MainContainer>
     </LoginPage>
@@ -60,7 +61,7 @@ const Login = () => {
 
 export default Login;
 
-const LoginPage = styled.div`
+const LoginPage = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -69,7 +70,7 @@ const LoginPage = styled.div`
   background: ${(props) => props.theme.bgLinear};
 `;
 
-const LoginContainer = styled.div`
+const LoginContainer = styled(motion.div)`
   width: 50%;
   padding: 1.5rem;
   display: flex;
@@ -86,14 +87,7 @@ const LoginContainer = styled.div`
   }
 `;
 
-const LoginFormContainer = styled.div`
-  form {
-    label {
-      font-size: 1.2rem;
-      font-weight: 500;
-    }
-  }
-`;
+const LoginFormContainer = styled(motion.div)``;
 
 const InfoContainer = styled.div`
   width: 50%;
@@ -102,7 +96,7 @@ const InfoContainer = styled.div`
 `;
 
 // TODO Main container flex direction change if screen width change
-const MainContainer = styled.div`
+const MainContainer = styled(motion.div)`
   width: 75vw;
   display: flex;
 `;

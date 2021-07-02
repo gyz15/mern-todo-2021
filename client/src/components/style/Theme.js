@@ -12,6 +12,15 @@ const AppTheme = {
   fontColorGrey: "#676767",
   fontColorDark: "#000000",
   fontColorErr: "#D90303",
+  iconSize: 2,
+  iconSizeLarge: 2.5,
+  fontWeightLight: 400,
+  fontWeightMedium: 500,
+  fontWeightBold: 700,
+  fontSizeSmall: 0.8,
+  fontSizeLight: 1.2,
+  fontSizeMedium: 1.4,
+  fontSizeBold: 2,
 };
 
 export default AppTheme;

@@ -45,3 +45,21 @@ export const ObjectUp = {
     },
   },
 };
+
+export const hoverTickPath = {
+  initial: {
+    pathLength: 0,
+    display: "none",
+  },
+  hover: {
+    pathLength: 1,
+    opacity: 1,
+    display: "initial",
+  },
+};
+
+export const TodoObjZoom = {
+  focused: {
+    translateY: "-0.2rem",
+  },
+};
