@@ -17,10 +17,10 @@ const AppTheme = {
   fontWeightLight: 400,
   fontWeightMedium: 500,
   fontWeightBold: 700,
-  fontSizeSmall: 0.8,
-  fontSizeLight: 1.2,
-  fontSizeMedium: 1.4,
-  fontSizeBold: 2,
+  fontSizeSmall: 1,
+  fontSizeLight: 1.4,
+  fontSizeMedium: 1.6,
+  fontSizeBold: 2.2,
 };
 
 export default AppTheme;

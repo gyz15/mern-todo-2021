@@ -19,6 +19,13 @@ import styled from "styled-components";
 import CreateTodo from "../components/todo/CreateTodo";
 import Profile from "./Profile";
 
+// Animations
+import { AnimateSharedLayout, motion } from "framer-motion";
+import {
+  AnimateTodoContainer,
+  TodoObjZoom,
+} from "../components/animations/variant";
+
 const Home = () => {
   const { todos, loading } = useSelector((state) => state.todo);
   const [sortBy, setSortBy] = useState("createdAt");
@@ -88,45 +95,39 @@ const Home = () => {
         )}
 
         <TodoBackground>
-          <TodoContainer>
-            {!loading ? (
-              todos.length > 0 ? (
-                todos.map(
-                  (todoObj) =>
-                    !todoObj.done && (
-                      <TodoObjBlockView
-                        done={false}
-                        data={todoObj}
-                        key={todoObj._id}
-                      />
+          <AnimateSharedLayout type="crossfade">
+            <TodoContainer initial="show" variants={AnimateTodoContainer}>
+              {!loading
+                ? todos.length > 0
+                  ? todos.map(
+                      (todoObj) =>
+                        !todoObj.done && (
+                          <TodoObjBlockView
+                            done={false}
+                            data={todoObj}
+                            key={todoObj._id}
+                          />
+                        )
                     )
-                )
-              ) : (
-                ""
-              )
-            ) : (
-              <Spinner />
-            )}
-            <AddTodoBlock handleOnClick={handleCreateTodo} />
-            {!loading ? (
-              todos.length > 0 ? (
-                todos.map(
-                  (todoObj) =>
-                    todoObj.done && (
-                      <TodoObjBlockView
-                        done={true}
-                        data={todoObj}
-                        key={todoObj._id}
-                      />
+                  : ""
+                : ""}
+              <AddTodoBlock handleOnClick={handleCreateTodo} />
+              {!loading
+                ? todos.length > 0
+                  ? todos.map(
+                      (todoObj) =>
+                        todoObj.done && (
+                          <TodoObjBlockView
+                            done={true}
+                            data={todoObj}
+                            key={todoObj._id}
+                          />
+                        )
                     )
-                )
-              ) : (
-                ""
-              )
-            ) : (
-              <Spinner />
-            )}
-          </TodoContainer>
+                  : ""
+                : ""}
+            </TodoContainer>
+          </AnimateSharedLayout>
         </TodoBackground>
       </HomeContainer>
     </HomePage>
@@ -147,6 +148,7 @@ const HomeContainer = styled.div`
   width: 80%;
 `;
 const TodoBackground = styled.div`
+  height: auto;
   background: #ffffff;
   border-radius: 1rem;
   margin-top: 1rem;
@@ -164,8 +166,9 @@ const TitleContainer = styled.div`
   align-items: center;
 `;
 
-const TodoContainer = styled.div`
-  max-height: 36rem;
+const TodoContainer = styled(motion.div)`
+  max-height: 40rem;
+  height: auto;
   padding-right: 0.8rem;
   overflow-y: scroll;
   overflow-x: hidden;

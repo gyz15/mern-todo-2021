@@ -8,11 +8,10 @@ const AddTodoBlock = ({ handleOnClick }) => {
   const [divOnHover, setDivOnHover] = useState(false);
 
   return (
-    <>
+    <motion.div layoutId="AddTodo">
       <AddTodoDiv
         variants={ObjectUp}
         whileHover="focused"
-        initial="initial"
         whileTap="pressed"
         onClick={handleOnClick}
         divOnHover={divOnHover}
@@ -23,7 +22,7 @@ const AddTodoBlock = ({ handleOnClick }) => {
         <Description>Add New Task</Description>
       </AddTodoDiv>
       <Line />
-    </>
+    </motion.div>
   );
 };
 

@@ -31,6 +31,7 @@ const TodoObjBlockView = ({ data, done = true }) => {
 
   return (
     <TodoDiv
+      layoutId={data._id.toString()}
       variants={TodoObjZoom}
       whileHover="focused"
       onClick={!done ? editHandler : () => {}}

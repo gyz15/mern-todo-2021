@@ -27,6 +27,9 @@ export const ObjectUp = {
   initial: {
     translateY: 0,
     backgroundColor: "#EFFCFF",
+    transition: {
+      duration: 1,
+    },
   },
   focused: {
     zIndex: 0,
@@ -61,5 +64,20 @@ export const hoverTickPath = {
 export const TodoObjZoom = {
   focused: {
     translateY: "-0.2rem",
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
+
+export const AnimateTodoContainer = {
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.5,
+    },
   },
 };
