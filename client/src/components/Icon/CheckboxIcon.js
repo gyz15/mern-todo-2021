@@ -1,8 +1,13 @@
+// @import Packages
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+
+// @import Images
 import checkbox_blank from "../../images/checkbox_blank.svg";
 import checkbox_disabled from "../../images/checkbox_disabled.svg";
 import checkbox_checked from "../../images/checkbox_checked.svg";
+
+// @import Styling
 import AppTheme from "../style/Theme";
 
 const CheckboxIcon = ({
@@ -11,6 +16,7 @@ const CheckboxIcon = ({
   disabled,
   onClickHandler,
 }) => {
+  // Check checked and disabled state onChange and set icon according to state
   const [icon, setIcon] = useState(checkbox_blank);
   useEffect(() => {
     if (disabled) {

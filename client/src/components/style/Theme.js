@@ -4,8 +4,6 @@ const AppTheme = {
   color_3: "#EFFCFF",
   colour_3_hover: "#D3F7FF",
   color_4: "#C7D8E5",
-  //   color_5: "#25C2E0",
-  //   color_6: "#25C2E0",
   bgLinear: "linear-gradient(#FFFFFF,#25C2E0)",
   actionLinear: "linear-gradient(#F59135,#FF6442)",
   fontColorLight: "#FFFFFF",
@@ -25,21 +23,17 @@ const AppTheme = {
 
 export default AppTheme;
 
-// @Info Used Color_1 on:
+// @used_in Color_1
 // Login Container (Login), Register Container (Register) div background
 
-// @Info Used Color_2 on:
+// @used_in Color_2
 // Haven't done task container (Home) div background
 
-// @Info Used Color_3 on:
+// @used_in Color_3
 // Add new task container (Home) div background
 
-// @Info Used Color_3_hover on:
+// @used_in Color_3_hover
 // Add new task container on hover(Home) div background
 
-// @Info Used Color_4 on:
+// @used_in Color_4
 // Done task container (Home) div background
-
-// @Info Used Color_5 on:
-
-// @Info Used Color_6 on:

@@ -1,8 +1,10 @@
+// @import Packages
 import React from "react";
-import done_icon from "../../images/done_icon.svg";
 import styled from "styled-components";
-import AnimatedNotDoneIcon from "./AnimatedNotDoneIcon";
 import { motion } from "framer-motion";
+
+// @import Animations
+import AnimatedNotDoneIcon from "./AnimatedNotDoneIcon";
 import { ObjectZoom } from "../animations/variant";
 
 const DoneIconSet = ({ done, setDone }) => {
@@ -13,15 +15,7 @@ const DoneIconSet = ({ done, setDone }) => {
       whileHover="focused"
       onClick={setDone}
     >
-      {done ? (
-        <img
-          src={done_icon}
-          alt="Cancel"
-          style={{ width: "2rem", margin: "auto", display: "block" }}
-        />
-      ) : (
-        <AnimatedNotDoneIcon />
-      )}
+      <AnimatedNotDoneIcon done={done} />
     </IconDiv>
   );
 };

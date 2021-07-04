@@ -1,5 +1,8 @@
+// @import Package
 import React from "react";
 import styled from "styled-components";
+
+// @import Component
 import CheckboxIcon from "../Icon/CheckboxIcon";
 
 const CheckboxInput = ({ label, checked, disabled, onClickHandler, error }) => {

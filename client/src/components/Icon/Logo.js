@@ -1,4 +1,7 @@
+// @import Package
 import React from "react";
+
+// @import Images
 import logo from "../../images/logo.svg";
 
 const Logo = ({ size = 200 }) => {

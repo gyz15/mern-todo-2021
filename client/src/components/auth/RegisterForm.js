@@ -1,17 +1,18 @@
+// @import Packages
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-// Actions
+// @import Actions
 import { registerUser } from "../../actions/authActions";
 
-// Components
+// @import Components
 import Input from "../common/Input";
 
-// Styling
+// @import Styling
 import { FormButton, InputContainer } from "../style/Components";
 
-// Animation
+// @import Animation
 import { ObjectZoom } from "../animations/variant";
 
 const RegisterForm = () => {

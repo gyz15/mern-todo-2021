@@ -1,3 +1,5 @@
+// @used_in ["../reducers/authReducer"]
+// @desc Check is object empty
 const isEmpty = (value) => {
   return (
     value === undefined ||

@@ -1,6 +1,9 @@
+// @import Packages
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+// @desc Form button styling
+// @used_in ["../auth/LoginForm","../auth/RegisterForm","../todo/CreateTodo","../todo/TodoDetail"]
 export const FormButton = styled(motion.button)`
   margin-top: 1rem;
   outline: none;
@@ -16,6 +19,8 @@ export const FormButton = styled(motion.button)`
   cursor: pointer;
 `;
 
+// @desc Input container styling
+// @used_in ["../auth/LoginForm","../auth/RegisterForm","../todo/CreateTodo","../todo/TodoDetail"]
 export const InputContainer = styled(motion.div)`
   margin: 0.5rem 0.8rem 0rem 0rem;
   label {
@@ -37,6 +42,8 @@ export const InputContainer = styled(motion.div)`
   }
 `;
 
+// @desc Input container styling
+// @used_in ["../../pages/Profile","../todo/CreateTodo","../todo/TodoDetail"]
 export const PageBackground = styled(motion.div)`
   z-index: 2;
   position: fixed;
@@ -51,7 +58,8 @@ export const PageBackground = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-// Motion here enter
+// @desc Input container styling
+// @used_in ["../todo/CreateTodo","../todo/TodoDetail"]
 export const CreateEditContainer = styled(motion.div)`
   z-index: 3;
   min-width: 25rem;
@@ -63,6 +71,8 @@ export const CreateEditContainer = styled(motion.div)`
   border-radius: 1rem;
 `;
 
+// @desc Input container styling
+// @used_in ["../todo/CreateTodo","../todo/TodoDetail","../../pages/Profile"]
 export const Taskbar = styled.div`
   width: 100%;
   display: flex;

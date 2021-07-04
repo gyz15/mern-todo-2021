@@ -1,7 +1,5 @@
-// Sort by
-// createdAt asc desc
-// dueDate ascending,descending
-// haveDue true->false / false -> true
+// @desc Sort todo objectin todo list based on attribute and ascending
+// @used_in ["../reducers/todoReducer"]
 export default function sortTodoBy(sortBy, ascending, todoList) {
   let otherArr = [];
   for (var i = 0; i < todoList.length; i++) {

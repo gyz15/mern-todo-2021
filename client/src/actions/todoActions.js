@@ -1,4 +1,7 @@
+// @import Packages
 import axios from "../axios-config";
+
+// @import Types
 import {
   TODO_LOADING,
   CLEAR_ERRORS,
@@ -10,7 +13,7 @@ import {
   EDIT_TODO,
 } from "./types";
 
-// Get all todo of user
+// @action Get all todos of user
 export const getUserTodos = () => (dispatch) => {
   dispatch(loadingTodo());
   axios
@@ -27,15 +30,16 @@ export const getUserTodos = () => (dispatch) => {
       // console.log(err.response.data);
     });
 };
-// Add a todo
+// @action Add a todo
 export const addTodo =
   (newTodoData, history, sortBy, ascending) => (dispatch) => {
     axios
       .post("/api/todo/add", newTodoData)
       .then((res) => {
         // console.log(res.data);
-        dispatch({ type: CLEAR_ERRORS });
         dispatch({ type: ADD_TODO, payload: res.data });
+        // Clear error and sort todo after add
+        dispatch({ type: CLEAR_ERRORS });
         dispatch(sortTodo(sortBy, ascending));
         history.push("/");
       })
@@ -43,21 +47,24 @@ export const addTodo =
         dispatch({ type: SET_ERRORS, payload: err.response.data });
       });
   };
-// Update a todo
+// @action Update a todo
 export const updateTodo =
-  (updateTodoId, updateTodoData, history, redirectPath) => (dispatch) => {
+  (updateTodoId, updateTodoData, history, redirectPath, sortBy, ascending) =>
+  (dispatch) => {
     axios
       .put(`/api/todo/${updateTodoId}`, updateTodoData)
       .then((res) => {
-        dispatch({ type: CLEAR_ERRORS });
         dispatch({ type: EDIT_TODO, payload: res.data });
+        // Clear error and sort todo after add
+        dispatch({ type: CLEAR_ERRORS });
+        dispatch(sortTodo(sortBy, ascending));
         history.push(redirectPath);
       })
       .catch((err) => {
         dispatch({ type: SET_ERRORS, payload: err.response.data });
       });
   };
-// Delete a todo
+// @action Delete a todo
 export const deleteTodo = (deleteTodoId) => (dispatch) => {
   axios
     .delete(`/api/todo/${deleteTodoId}`)
@@ -70,7 +77,7 @@ export const deleteTodo = (deleteTodoId) => (dispatch) => {
       dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
-// Sort todo by
+// @action Sort todo by
 export const sortTodo = (sortByValue, ascending) => (dispatch) => {
   dispatch({
     type: SORT_TODO_BY,
@@ -78,7 +85,7 @@ export const sortTodo = (sortByValue, ascending) => (dispatch) => {
   });
 };
 
-// Set Todo Loading
+// @action Set Todo Loading
 export const loadingTodo = () => {
   return {
     type: TODO_LOADING,

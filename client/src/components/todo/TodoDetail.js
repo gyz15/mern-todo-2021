@@ -1,10 +1,14 @@
 // TODO solve when straight use url will redirect to home page
+// @import Packages
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+
+// @import Action
 import { updateTodo } from "../../actions/todoActions";
 
-import styled from "styled-components";
+// @import Components
 import Input from "../common/Input";
 import Cross from "../Icon/Cross";
 import CheckboxInput from "../common/CheckboxInput";
@@ -14,9 +18,11 @@ import {
   Taskbar,
   FormButton,
 } from "../style/Components";
+
+// @import Animation
 import { ObjectZoom } from "../animations/variant";
 
-const TodoDetail = ({ todos, pathId }) => {
+const TodoDetail = ({ todos, pathId, sortBy, ascending }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -69,7 +75,9 @@ const TodoDetail = ({ todos, pathId }) => {
       done: done,
     };
     const redirectPath = "/";
-    dispatch(updateTodo(pathId, updateData, history, redirectPath));
+    dispatch(
+      updateTodo(pathId, updateData, history, redirectPath, sortBy, ascending)
+    );
   };
 
   return (
@@ -102,6 +110,9 @@ const TodoDetail = ({ todos, pathId }) => {
               disabled={isDaily}
               onClickHandler={(e) => {
                 sethaveDue(!haveDue);
+                if (haveDue === false) {
+                  setDueDate("");
+                }
               }}
               label="Have Due Date"
               error={errors.haveDue}

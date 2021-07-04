@@ -1,4 +1,7 @@
+// @import Types
 import { SET_ERRORS, CLEAR_ERRORS } from "../actions/types";
+
+// @intial_state
 const initialState = {
   errors: {},
 };

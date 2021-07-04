@@ -1,9 +1,14 @@
+// @import Packages
 import axios from "../axios-config";
-import { SET_CURRENT_USER, SET_ERRORS, CLEAR_ERRORS } from "./types";
 import jwt_decode from "jwt-decode";
+
+// @import Types
+import { SET_CURRENT_USER, SET_ERRORS, CLEAR_ERRORS } from "./types";
+
+// @import Utils
 import setOrDeleteAuthHeader from "../utils/setOrDeleteAuthHeader";
 
-// Register User
+// @action Register User
 export const registerUser = (registerData, history) => (dispatch) => {
   axios
     .post("/api/user/register", registerData)
@@ -17,7 +22,7 @@ export const registerUser = (registerData, history) => (dispatch) => {
       dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
-// Login User
+// @action Login User
 export const loginUser = (loginData) => (dispatch) => {
   axios
     .post("/api/user/login", loginData)
@@ -26,6 +31,7 @@ export const loginUser = (loginData) => (dispatch) => {
         type: CLEAR_ERRORS,
       });
       const { token } = res.data;
+      // Set auth to header for future api fetching
       setOrDeleteAuthHeader(token);
       localStorage.setItem("jwtToken", token);
       const decoded = jwt_decode(token);
@@ -35,7 +41,7 @@ export const loginUser = (loginData) => (dispatch) => {
       dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
-// Delete User
+// @action Delete User
 export const deleteUser = () => (dispatch) => {
   if (window.confirm("Are you sure? This can't be undone")) {
     axios
@@ -49,7 +55,7 @@ export const deleteUser = () => (dispatch) => {
   }
 };
 
-// Set user
+// @action Set user
 export const setUser = (decoded) => {
   return {
     type: SET_CURRENT_USER,
@@ -57,7 +63,7 @@ export const setUser = (decoded) => {
   };
 };
 
-// Logout User
+// @action Logout User
 export const logoutUser = () => (dispatch) => {
   localStorage.removeItem("jwtToken");
   setOrDeleteAuthHeader(false);

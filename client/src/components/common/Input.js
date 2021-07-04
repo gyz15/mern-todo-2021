@@ -1,5 +1,8 @@
+// @import Packages
 import React from "react";
 import styled from "styled-components";
+
+// @import Animation
 import { motion } from "framer-motion";
 import { ErrorPopUp } from "../animations/variant";
 

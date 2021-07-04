@@ -1,12 +1,15 @@
+// @import Packages
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+
+// @import Components
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// React redux
+
+// @import store
 import store from "./store";
-import { Provider } from "react-redux";
-// React Router
-import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,17 +1,19 @@
+// @import Packages
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteTodo, updateTodo } from "../../actions/todoActions";
-import DoneIconSet from "../Icon/DoneIconSet";
-import DeleteIcon from "../Icon/DeleteIcon";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 import Moment from "react-moment";
 
-// Styling
-import styled from "styled-components";
-import AppTheme from "../style/Theme";
+// @import Actions
+import { deleteTodo, updateTodo } from "../../actions/todoActions";
 
-// Animation
-import { motion } from "framer-motion";
+// @import Components
+import DoneIconSet from "../Icon/DoneIconSet";
+import DeleteIcon from "../Icon/DeleteIcon";
+
+// @import Animation
 import { TodoObjZoom } from "../animations/variant";
 
 const TodoObjBlockView = ({ data, done = true }) => {

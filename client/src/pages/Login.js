@@ -1,17 +1,13 @@
-// Packages
+// @import Packages
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation, Link } from "react-router-dom";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
-// Components
+// @import Components
 import LoginForm from "../components/auth/LoginForm";
 import Logo from "../components/Icon/Logo";
-
-// Styling
-import styled from "styled-components";
-
-// Animation
-import { motion } from "framer-motion";
 
 const Login = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -86,8 +82,6 @@ const LoginContainer = styled(motion.div)`
     }
   }
 `;
-
-const LoginFormContainer = styled(motion.div)``;
 
 const InfoContainer = styled.div`
   width: 50%;

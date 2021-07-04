@@ -1,20 +1,18 @@
-// TODO display errrors in small tag with red styling (refer figmaa)
-
-// Packages
+// @import Packages
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-// Components
+// @import Components
 import Input from "../common/Input";
 
-// Actions
+// @import Actions
 import { loginUser } from "../../actions/authActions";
 
-// Styles
+// @import Styles
 import { FormButton, InputContainer } from "../style/Components";
 
-// Animation
+// @import Animation
 import { motion } from "framer-motion";
 import { ObjectZoom } from "../animations/variant";
 

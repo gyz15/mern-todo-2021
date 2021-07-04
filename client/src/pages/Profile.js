@@ -1,11 +1,18 @@
+// @import Packages
 import React from "react";
-import Cross from "../components/Icon/Cross";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { logoutUser, deleteUser } from "../actions/authActions";
-import { PageBackground, Taskbar } from "../components/style/Components";
 import { motion } from "framer-motion";
+
+// @import Actions
+import { logoutUser, deleteUser } from "../actions/authActions";
+
+// @import Components
+import Cross from "../components/Icon/Cross";
+import { PageBackground, Taskbar } from "../components/style/Components";
+
+// @import Animation
 import { ObjectZoom } from "../components/animations/variant";
 
 const Profile = () => {

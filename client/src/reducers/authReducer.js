@@ -1,6 +1,10 @@
+// @import Types
 import { SET_CURRENT_USER } from "../actions/types";
+
+// @import Utils
 import isEmpty from "../utils/isEmpty";
 
+// @intial_state
 const initialState = {
   isAuthenticated: false,
   user: {},

@@ -1,4 +1,4 @@
-// TODO complete sortTodoBy  function
+// @import Types
 import {
   TODO_LOADING,
   SET_TODOS,
@@ -7,9 +7,12 @@ import {
   DELETE_TODO,
   SORT_TODO_BY,
 } from "../actions/types";
+
+// @import Utils
 import editObjInArr from "../utils/editObjInArr";
 import sortTodoBy from "../utils/sortTodoBy";
 
+// @initial_state
 const initialState = {
   todos: [],
   loading: false,

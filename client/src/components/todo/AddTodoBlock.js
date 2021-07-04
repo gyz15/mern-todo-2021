@@ -1,7 +1,12 @@
+// @import Packages
 import React, { useState } from "react";
 import styled from "styled-components";
-import AddIcon from "../Icon/AddIcon";
 import { motion } from "framer-motion";
+
+// @import Component
+import AddIcon from "../Icon/AddIcon";
+
+// @import Animation
 import { ObjectUp } from "../animations/variant";
 
 const AddTodoBlock = ({ handleOnClick }) => {

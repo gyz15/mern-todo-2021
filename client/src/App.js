@@ -1,27 +1,27 @@
-// Packages
+// @import Packages
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
+import { ThemeProvider } from "styled-components";
 
-// Private Route
+// @import Component
 import PrivateRoute from "./components/common/PrivateRoute";
 
-// Utils
+// @import Util
 import setOrDeleteAuthHeader from "./utils/setOrDeleteAuthHeader";
 
-// Pages
+// @import Pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-// Actions
+// @import Actions
 import { setUser, logoutUser } from "./actions/authActions";
 
-// Styling
+// @import Styling
 import GlobalStyles from "./components/style/GlobalStyles";
 import AppTheme from "./components/style/Theme";
-import { ThemeProvider } from "styled-components";
 
 function App() {
   const dispatch = useDispatch();

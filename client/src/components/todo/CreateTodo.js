@@ -1,13 +1,16 @@
-// TODO combine with update form
+// @import Packages
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+
+// @import Action
 import { addTodo } from "../../actions/todoActions";
+
+// @import Components
 import Input from "../common/Input";
 import CheckboxInput from "../common/CheckboxInput";
 import Cross from "../Icon/Cross";
-
-import styled from "styled-components";
 import {
   FormButton,
   InputContainer,
@@ -15,6 +18,8 @@ import {
   CreateEditContainer,
   Taskbar,
 } from "../style/Components";
+
+// @import Animation
 import { ObjectZoom } from "../animations/variant";
 
 const CreateTodo = ({ sortBy, ascending }) => {

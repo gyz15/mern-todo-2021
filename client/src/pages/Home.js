@@ -1,30 +1,23 @@
-// Packages
+// @import Packages
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
+import styled from "styled-components";
+import { AnimateSharedLayout, motion } from "framer-motion";
 
-// Components
+// @import Components
 import TodoDetail from "../components/todo/TodoDetail";
 import TodoObjBlockView from "../components/todo/TodoObjBlockView";
-import Spinner from "../components/common/Spinner";
 import UserIcon from "../components/Icon/UserIcon";
 import SortIcon from "../components/Icon/SortIcon";
 import AddTodoBlock from "../components/todo/AddTodoBlock";
 
-// Actions
+// @import Actions
 import { getUserTodos, sortTodo } from "../actions/todoActions";
 
-// Styling
-import styled from "styled-components";
+// @import Components
 import CreateTodo from "../components/todo/CreateTodo";
 import Profile from "./Profile";
-
-// Animations
-import { AnimateSharedLayout, motion } from "framer-motion";
-import {
-  AnimateTodoContainer,
-  TodoObjZoom,
-} from "../components/animations/variant";
 
 const Home = () => {
   const { todos, loading } = useSelector((state) => state.todo);
@@ -85,7 +78,12 @@ const Home = () => {
             pathId === "add" ? (
               <CreateTodo sortBy={sortBy} ascending={ascending} />
             ) : (
-              <TodoDetail todos={todos} pathId={pathId} />
+              <TodoDetail
+                todos={todos}
+                pathId={pathId}
+                sortBy={sortBy}
+                ascending={ascending}
+              />
             )
           ) : (
             ""
@@ -96,7 +94,7 @@ const Home = () => {
 
         <TodoBackground>
           <AnimateSharedLayout type="crossfade">
-            <TodoContainer initial="show" variants={AnimateTodoContainer}>
+            <TodoContainer initial="show">
               {!loading
                 ? todos.length > 0
                   ? todos.map(
@@ -204,18 +202,6 @@ const SortSelect = styled.select`
   font-size: ${(props) => `${props.theme.fontSizeLight}rem`};
   z-index: 1;
 `;
-const SortDiv = styled.div`
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-`;
-
-const SortBy = styled.p`
-  margin: 0rem 1rem;
-  font-weight: ${(props) => `${props.theme.fontWeightMedium}`};
-  font-size: ${(props) => `${props.theme.fontSizeMedium}rem`};
-  width: fill-available;
-`;
 const SelectDiv = styled.div`
   width: 100%;
   min-width: 12rem;
@@ -230,6 +216,7 @@ const SelectDiv = styled.div`
   grid-template-areas: "select";
   align-items: center;
   position: relative;
+  border: none;
   &:after {
     content: "";
     width: 0.8em;
@@ -242,6 +229,18 @@ const SelectDiv = styled.div`
   &:after {
     grid-area: select;
   }
+`;
+const SortDiv = styled.div`
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+`;
+
+const SortBy = styled.p`
+  margin: 0rem 1rem;
+  font-weight: ${(props) => `${props.theme.fontWeightMedium}`};
+  font-size: ${(props) => `${props.theme.fontSizeMedium}rem`};
+  width: fill-available;
 `;
 
 export default Home;

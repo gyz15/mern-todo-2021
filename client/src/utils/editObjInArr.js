@@ -1,5 +1,5 @@
-// Used in reducer to update object in an array
-// cannot direct compare as if deleted will have a {message:"success"} attribute
+// @desc Edit or delete todo object from object array in state
+// @used_in ["../reducers/todoReducer"]
 export default function editObjInArr(obj, listOfObj, isDelete) {
   let newTodoArr = [...listOfObj];
   if (!isDelete) {

@@ -1,10 +1,10 @@
-// Packages
+// @import Packages
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import styled from "styled-components";
 
-// Components
+// @import Components
 import RegisterForm from "../components/auth/RegisterForm";
 
 const Register = () => {
