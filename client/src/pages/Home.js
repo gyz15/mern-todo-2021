@@ -133,7 +133,7 @@ const Home = () => {
 };
 
 const HomePage = styled.div`
-  min-width: 100%;
+  min-width: 100vw;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -144,6 +144,11 @@ const HomePage = styled.div`
 const HomeContainer = styled.div`
   max-height: 80%;
   width: 80%;
+  max-width: 50rem;
+  margin: 2rem 0rem;
+  @media (max-width: 500px) {
+    width: 90%;
+  }
 `;
 const TodoBackground = styled.div`
   height: auto;
@@ -157,22 +162,35 @@ const HomeTitle = styled.h1`
   font-size: ${(props) => `${props.theme.fontSizeBold}rem`};
   display: inline-block;
   margin: 1rem;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 
 const TitleContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  @media (max-width: 500px) {
+    scale: 0.5;
+  }
 `;
 
 const TodoContainer = styled(motion.div)`
   max-height: 40rem;
   height: auto;
-  padding-right: 0.8rem;
   overflow-y: scroll;
   overflow-x: hidden;
+  @media (min-width: 600px) {
+    padding-right: 0.8rem;
+  }
   &::-webkit-scrollbar {
     width: 0.5rem;
     border-radius: 1rem;
+    @media (max-width: 600px) {
+      display: none;
+    }
   }
   &::-webkit-scrollbar-thumb {
     background-color: ${(props) => props.theme.color_1};
@@ -201,6 +219,10 @@ const SortSelect = styled.select`
   font-weight: ${(props) => `${props.theme.fontWeightMedium}`};
   font-size: ${(props) => `${props.theme.fontSizeLight}rem`};
   z-index: 1;
+  @media (max-width: 500px) {
+    /* fontSizeMiniLight */
+    font-size: 1rem;
+  }
 `;
 const SelectDiv = styled.div`
   width: 100%;
@@ -234,6 +256,9 @@ const SortDiv = styled.div`
   margin-left: auto;
   display: flex;
   align-items: center;
+  @media (max-width: 500px) {
+    scale: 0.7;
+  }
 `;
 
 const SortBy = styled.p`
@@ -241,6 +266,9 @@ const SortBy = styled.p`
   font-weight: ${(props) => `${props.theme.fontWeightMedium}`};
   font-size: ${(props) => `${props.theme.fontSizeMedium}rem`};
   width: fill-available;
+  @media (max-width: 725px) {
+    display: none;
+  }
 `;
 
 export default Home;

@@ -60,11 +60,14 @@ const TodoObjBlockView = ({ data, done = true }) => {
 const Description = styled.h3`
   padding: 0rem;
   font-size: ${(props) => `${props.theme.fontSizeLight}rem`};
+  @media (max-width: 500px) {
+    font-size: 1rem;
+  }
 `;
 
 const TodoDiv = styled(motion.div)`
   cursor: ${(props) => (props.done ? "not-allowed" : "pointer")};
-  height: 4rem;
+  min-height: 4rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -73,10 +76,14 @@ const TodoDiv = styled(motion.div)`
     props.done ? props.theme.color_4 : props.theme.color_2};
   margin: 1rem 0rem;
   border-radius: 1rem;
+  @media (max-width: 500px) {
+    padding: 1rem 1.2rem;
+  }
 `;
 
 const AlignRight = styled.div`
   margin-left: auto;
+  padding-left: 1rem;
 `;
 
 const DescriptionDiv = styled.div`
@@ -84,6 +91,8 @@ const DescriptionDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow-x: hidden;
+  max-width: 50%;
   padding: 0rem 0rem 0rem 1rem;
   * {
     color: ${(props) =>
@@ -99,6 +108,9 @@ const DueDate = styled.h5`
     Date.parse(props.date) <= Date.now() && !props.done
       ? `time{color:${props.theme.fontColorErr}};`
       : ""}
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export default TodoObjBlockView;

@@ -56,5 +56,9 @@ const Description = styled.h3`
   color: #676767;
   font-weight: ${(props) => `${props.theme.fontWeightMedium}`};
   font-size: ${(props) => `${props.theme.fontSizeMedium}rem`};
+  @media (max-width: 500px) {
+    /* fontSizeMiniLight */
+    font-size: 1rem;
+  }
 `;
 export default AddTodoBlock;

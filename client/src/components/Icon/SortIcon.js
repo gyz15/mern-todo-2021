@@ -37,6 +37,9 @@ const SortIcon = ({
 const SortIconDiv = styled(motion.div)`
   cursor: pointer;
   margin: 0.5rem;
+  @media (max-width: 420px) {
+    display: none;
+  } ;
 `;
 
 export default SortIcon;
