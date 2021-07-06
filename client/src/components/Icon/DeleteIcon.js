@@ -22,40 +22,40 @@ const DeleteIcon = ({ size = AppTheme.iconSize, deleteHandler, done }) => {
       >
         <path
           d="M34.4117 23.6765V42.6176"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
-        <circle cx="29" cy="29" r="27.5" stroke-width="3" />
+        <circle cx="29" cy="29" r="27.5" strokeWidth="3" />
         <path
           d="M23.5883 23.6765V42.6176"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M29 23.6765V42.6176"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M18.1765 46V19.6176H39.8236V46H18.1765Z"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M22.2352 14.2059V11.5H35.7646V14.2059"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M15.4706 19.6176V15.5588H42.5294V19.6176H15.4706Z"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </motion.svg>
     </div>

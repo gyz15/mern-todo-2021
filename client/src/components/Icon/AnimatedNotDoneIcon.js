@@ -22,7 +22,7 @@ const AnimatedNotDoneIcon = ({ size = AppTheme.iconSize, done }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="29" cy="29" r="27" stroke-width="4" />
+      <circle cx="29" cy="29" r="27" strokeWidth="4" />
       <motion.path
         variants={hoverTickPath}
         initial={done ? "hover" : "initial"}

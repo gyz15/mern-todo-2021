@@ -14,7 +14,7 @@ import Cross from "../Icon/Cross";
 import CheckboxInput from "../common/CheckboxInput";
 import {
   PageBackground,
-  CreateEditContainer,
+  PopUpContainer,
   Taskbar,
   FormButton,
 } from "../style/Components";
@@ -60,7 +60,7 @@ const TodoDetail = ({ todos, pathId, sortBy, ascending }) => {
     history.push("/");
   };
   const quitPage = (e) => {
-    if (e.target.classList.contains("edit-page")) {
+    if (e.target.classList.contains("background")) {
       history.push("/");
     }
   };
@@ -81,8 +81,8 @@ const TodoDetail = ({ todos, pathId, sortBy, ascending }) => {
   };
 
   return (
-    <PageBackground className="edit-page" onClick={quitPage}>
-      <CreateEditContainer>
+    <PageBackground className="background" onClick={quitPage}>
+      <PopUpContainer>
         <Taskbar>
           <h2>Edit Todo</h2>
           <Cross onClickHandler={userCloseEditWindowHandler} right={true} />
@@ -152,7 +152,7 @@ const TodoDetail = ({ todos, pathId, sortBy, ascending }) => {
             Update
           </FormButton>
         </form>
-      </CreateEditContainer>
+      </PopUpContainer>
     </PageBackground>
   );
 };

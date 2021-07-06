@@ -23,9 +23,11 @@ const Home = () => {
   const { todos, loading } = useSelector((state) => state.todo);
   const [sortBy, setSortBy] = useState("createdAt");
   const [ascending, setAscending] = useState(true);
+  const [lockBackgroundPosition, setLockBakcgroundPosition] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
   const profileOrTodo = location.pathname.split("/")[1];
+  console.log(location.pathname.split("/"));
   const pathId = location.pathname.split("/")[2];
   const history = useHistory();
 
@@ -39,6 +41,14 @@ const Home = () => {
   const handleSort = () => {
     setAscending(!ascending);
   };
+
+  useEffect(() => {
+    if (location.pathname.split("/")[1] !== "") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [location]);
 
   useEffect(() => {
     dispatch(getUserTodos());
@@ -56,6 +66,26 @@ const Home = () => {
 
   return (
     <HomePage>
+      {!loading && profileOrTodo ? (
+        profileOrTodo === "profile" ? (
+          <Profile />
+        ) : profileOrTodo === "todo" ? (
+          pathId === "add" ? (
+            <CreateTodo sortBy={sortBy} ascending={ascending} />
+          ) : (
+            <TodoDetail
+              todos={todos}
+              pathId={pathId}
+              sortBy={sortBy}
+              ascending={ascending}
+            />
+          )
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
       <HomeContainer>
         <TitleContainer>
           <UserIcon onClickHandler={handleProfile} />
@@ -71,26 +101,6 @@ const Home = () => {
             <SortIcon active={ascending} onClickHandler={handleSort} />
           </SortDiv>
         </TitleContainer>
-        {!loading && profileOrTodo ? (
-          profileOrTodo === "profile" ? (
-            <Profile />
-          ) : profileOrTodo === "todo" ? (
-            pathId === "add" ? (
-              <CreateTodo sortBy={sortBy} ascending={ascending} />
-            ) : (
-              <TodoDetail
-                todos={todos}
-                pathId={pathId}
-                sortBy={sortBy}
-                ascending={ascending}
-              />
-            )
-          ) : (
-            ""
-          )
-        ) : (
-          ""
-        )}
 
         <TodoBackground>
           <AnimateSharedLayout type="crossfade">

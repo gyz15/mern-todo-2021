@@ -10,7 +10,11 @@ import { logoutUser, deleteUser } from "../actions/authActions";
 
 // @import Components
 import Cross from "../components/Icon/Cross";
-import { PageBackground, Taskbar } from "../components/style/Components";
+import {
+  PageBackground,
+  Taskbar,
+  PopUpContainer,
+} from "../components/style/Components";
 
 // @import Animation
 import { ObjectZoom } from "../components/animations/variant";
@@ -26,7 +30,7 @@ const Profile = () => {
     dispatch(deleteUser());
   };
   const quitPage = (e) => {
-    if (e.target.classList.contains("profile")) {
+    if (e.target.classList.contains("background")) {
       history.push("/");
     }
   };
@@ -34,8 +38,8 @@ const Profile = () => {
     history.push("/");
   };
   return (
-    <PageBackground className="profile" onClick={quitPage}>
-      <ProfileContainer>
+    <PageBackground className="background" onClick={quitPage}>
+      <PopUpContainer>
         <Taskbar>
           <h2>Profile</h2>
           <Cross onClickHandler={quitHandler} right={true} />
@@ -57,22 +61,13 @@ const Profile = () => {
         >
           Delete this Account
         </ProfileButton>
-      </ProfileContainer>
+      </PopUpContainer>
     </PageBackground>
   );
 };
 
 export default Profile;
 
-const ProfileContainer = styled(motion.div)`
-  min-width: 15rem;
-  max-width: 30rem;
-  min-height: 10rem;
-  max-height: 40rem;
-  background-color: #edf7fe;
-  padding: 2rem;
-  border-radius: 1rem;
-`;
 const ProfileButton = styled(motion.button)`
   margin-top: 1rem;
   outline: none;
@@ -86,4 +81,5 @@ const ProfileButton = styled(motion.button)`
   position: left;
   background: ${(props) => (props.danger ? "red" : props.theme.actionLinear)};
   cursor: pointer;
+  text-align: left;
 `;

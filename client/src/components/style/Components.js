@@ -42,14 +42,14 @@ export const InputContainer = styled(motion.div)`
   }
 `;
 
-// @desc Input container styling
+// @desc Page Background styling for popup
 // @used_in ["../../pages/Profile","../todo/CreateTodo","../todo/TodoDetail"]
 export const PageBackground = styled(motion.div)`
-  z-index: 2;
-  position: fixed;
   width: 100%;
   min-height: 100vh;
+  z-index: 5;
   overflow-y: scroll;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
@@ -58,20 +58,23 @@ export const PageBackground = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-// @desc Input container styling
+// @desc Create / Edit Container styling
 // @used_in ["../todo/CreateTodo","../todo/TodoDetail"]
-export const CreateEditContainer = styled(motion.div)`
-  z-index: 3;
-  min-width: 25rem;
+export const PopUpContainer = styled(motion.div)`
+  z-index: 10;
+  min-width: 15rem;
   max-width: 30rem;
-  min-height: 20rem;
+  min-height: 10rem;
   max-height: 40rem;
   background-color: #edf7fe;
   padding: 2rem;
   border-radius: 1rem;
+  @media (max-width: 500px) {
+    max-width: 90%;
+  }
 `;
 
-// @desc Input container styling
+// @desc Popup Taskbar Styling
 // @used_in ["../todo/CreateTodo","../todo/TodoDetail","../../pages/Profile"]
 export const Taskbar = styled.div`
   width: 100%;

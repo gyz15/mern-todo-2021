@@ -15,7 +15,7 @@ import {
   FormButton,
   InputContainer,
   PageBackground,
-  CreateEditContainer,
+  PopUpContainer,
   Taskbar,
 } from "../style/Components";
 
@@ -34,6 +34,12 @@ const CreateTodo = ({ sortBy, ascending }) => {
   // Normal Quit Handler for user clicking "X"
   const quitHandler = () => {
     history.push("/");
+  };
+  // Quit Handler for user clicking Card Shadow
+  const quitPage = (e) => {
+    if (e.target.classList.contains("background")) {
+      history.push("/");
+    }
   };
 
   const todoCreateHandler = (e) => {
@@ -55,16 +61,9 @@ const CreateTodo = ({ sortBy, ascending }) => {
 
   useEffect(() => {}, [isDaily, haveDue]);
 
-  // Quit Handler for user clicking Card Shadow
-  const quitPage = (e) => {
-    if (e.target.classList.contains("create-page")) {
-      history.push("/");
-    }
-  };
-
   return (
-    <PageBackground className="create-page" onClick={quitPage}>
-      <CreateEditContainer>
+    <PageBackground className="background" onClick={quitPage}>
+      <PopUpContainer>
         <Taskbar>
           <h2>Create A Todo</h2>
           <Cross onClickHandler={quitHandler} right={true} />
@@ -129,7 +128,7 @@ const CreateTodo = ({ sortBy, ascending }) => {
             Create
           </FormButton>
         </form>
-      </CreateEditContainer>
+      </PopUpContainer>
     </PageBackground>
   );
 };
